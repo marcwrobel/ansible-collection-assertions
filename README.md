@@ -1,3 +1,5 @@
+[![Build](https://github.com/marcwrobel/ansible-collection-assertions/workflows/CI/badge.svg)](https://github.com/marcwrobel/ansible-collection-assertions/actions)
+
 # Ansible Collection - marcwrobel.assertions
 
 A reusable collection of assertions for Ansible.
