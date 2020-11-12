@@ -1,6 +1,6 @@
 ---
 
-- name: 'Clear assertion variables'
+- name: 'Clear assert_* variables'
   set_fact:
     assert_file_content__path_defined_assertion:
     assert_file_content__match_defined_assertion:
