@@ -11,8 +11,11 @@ with the (default) Ansible test verifier.
 
 This collection supports the following assertions :
 
-- [assert_ansible_version](/ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Assertions on Ansible version.
+- [assert_ansible_version](/ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Assertions on the current Ansible version.
+- [assert_distribution](/ansible_collections/marcwrobel/assertions/roles/assert_distribution/README.md): Assertions on the current distribution version: name,
+  version.
 - [assert_file_content](/ansible_collections/marcwrobel/assertions/roles/assert_file_content/README.md): Assertions on file content.
-- [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions for paths.
+- [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions on paths : existence, type, mode, owner, group.
+- [assert_service](/ansible_collections/marcwrobel/assertions/roles/assert_service/README.md): Assertions on services : existence, state, status.
 
 Take a look at each assertion README for a more comprehensible documentation with usages.

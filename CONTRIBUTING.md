@@ -51,7 +51,7 @@ The default distribution is `debian10`.
 If you want to launch integration tests on multiple distributions :
 
     cd ansible_collections/marcwrobel/assertions
-    for distro in debian10 ubuntu2004 centos8 fedora32 amazonlinux2; do
+    for distro in debian10 ubuntu2004 centos8 fedora33 amazonlinux2; do
         MOLECULE_DISTRO=$distro molecule test
     done
 
