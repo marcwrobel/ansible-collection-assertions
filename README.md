@@ -9,5 +9,9 @@ with the (default) Ansible test verifier.
 
 ## Assertions
 
-- [assert.ansible_version](ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Asserts that Ansible version is between the given
+This collection supports the following assertions :
+
+- [assert_ansible_version](ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Asserts that Ansible version is between the given
   versions.
+
+Take a look at each assertion README for a more comprehensible documentation with usages.

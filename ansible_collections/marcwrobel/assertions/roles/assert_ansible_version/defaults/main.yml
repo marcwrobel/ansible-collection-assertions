@@ -1,5 +1,4 @@
 ---
 
-# Defines if strict version parsing should be used.
-# See https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions
+# Whether strict version parsing should be used.
 strict: false
