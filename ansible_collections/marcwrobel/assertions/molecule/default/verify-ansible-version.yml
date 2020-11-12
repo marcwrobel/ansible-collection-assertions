@@ -1,80 +1,88 @@
 ---
 
-- name: 'When min and max not provided, then OK'
+- name: 'When min and max not provided, then succeeds'
   include_role:
     name: 'assert_ansible_version'
 
-- name: 'When only min provided and version >= min, then OK'
+- name: 'When only min provided and version >= min, then succeeds'
   include_role:
     name: 'assert_ansible_version'
   vars:
     min: '1'
 
-- name: 'When only min provided and version < min, then KO - assertion'
-  include_role:
-    name: 'assert_ansible_version'
-    apply:
-      ignore_errors: true
-  vars:
-    min: '99'
-- name: 'When only min provided and version > min, then KO - verification'
-  assert:
-    that:
-      - 'assert_ansible_version__min_assertion is failed'
-      - 'assert_ansible_version__min_assertion.msg is regex("^Expecting Ansible version to be >= 99, but was")'
-    fail_msg: 'assertion result : {{ assert_ansible_version__min_assertion | to_json }}'
+- name: 'When only min provided and version < min, then fails'
+  block:
+    - name: 'Assertion'
+      include_role:
+        name: 'assert_ansible_version'
+        apply:
+          ignore_errors: true
+      vars:
+        min: '99'
+    - name: 'Verification'
+      assert:
+        that:
+          - 'assert_ansible_version__min_assertion is failed'
+          - 'assert_ansible_version__min_assertion.msg is regex("^Expecting Ansible version to be >= 99, but was")'
+        fail_msg: 'assertion result : {{ assert_ansible_version__min_assertion | to_json }}'
 
-- name: 'When only min provided and version >= min but strict is true, then KO - assertion'
-  include_role:
-    name: 'assert_ansible_version'
-    apply:
-      ignore_errors: true
-  vars:
-    min: '1'
-    strict: true
-- name: 'When only min provided and version >= min but strict is true, then KO - verification'
-  assert:
-    that:
-      - 'assert_ansible_version__min_assertion is failed'
-      - 'assert_ansible_version__min_assertion.msg is regex("Version comparison: invalid version number")'
-    fail_msg: 'assertion result : {{ assert_ansible_version__min_assertion | to_json }}'
+- name: 'When only min provided and version >= min but strict is true, then fails'
+  block:
+    - name: 'Assertion'
+      include_role:
+        name: 'assert_ansible_version'
+        apply:
+          ignore_errors: true
+      vars:
+        min: '1'
+        strict: true
+    - name: 'Verification'
+      assert:
+        that:
+          - 'assert_ansible_version__min_assertion is failed'
+          - 'assert_ansible_version__min_assertion.msg is regex("Version comparison: invalid version number")'
+        fail_msg: 'assertion result : {{ assert_ansible_version__min_assertion | to_json }}'
 
-- name: 'When only max provided and version < max, then OK'
+- name: 'When only max provided and version < max, then succeeds'
   include_role:
     name: 'assert_ansible_version'
-  vars:
-    max: '99'
-
-- name: 'When only max provided and version > max, then KO - assertion'
-  include_role:
-    name: 'assert_ansible_version'
-    apply:
-      ignore_errors: true
-  vars:
-    max: '2.7'
-- name: 'When only max provided and version > max, then KO - verification'
-  assert:
-    that:
-      - 'assert_ansible_version__max_assertion is failed'
-      - 'assert_ansible_version__max_assertion.msg is regex("^Expecting Ansible version to be < 2.7, but was")'
-    fail_msg: 'assertion result : {{ assert_ansible_version__max_assertion | to_json }}'
-
-- name: 'When only max provided and version > max but strict is true, then KO - assertion'
-  include_role:
-    name: 'assert_ansible_version'
-    apply:
-      ignore_errors: true
   vars:
     max: '99'
-    strict: true
-- name: 'When only max provided and version > max but strict is true, then KO - verification'
-  assert:
-    that:
-      - 'assert_ansible_version__max_assertion is failed'
-      - 'assert_ansible_version__max_assertion.msg is regex("Version comparison: invalid version number")'
-    fail_msg: 'assertion result : {{ assert_ansible_version__max_assertion | to_json }}'
 
-- name: 'When min and max provided and version >= min and version < max, then OK'
+- name: 'When only max provided and version > max, then false'
+  block:
+    - name: 'Assertion'
+      include_role:
+        name: 'assert_ansible_version'
+        apply:
+          ignore_errors: true
+      vars:
+        max: '2.7'
+    - name: 'Verification'
+      assert:
+        that:
+          - 'assert_ansible_version__max_assertion is failed'
+          - 'assert_ansible_version__max_assertion.msg is regex("^Expecting Ansible version to be < 2.7, but was")'
+        fail_msg: 'assertion result : {{ assert_ansible_version__max_assertion | to_json }}'
+
+- name: 'When only max provided and version > max but strict is true, then fails'
+  block:
+    - name: 'Assertion'
+      include_role:
+        name: 'assert_ansible_version'
+        apply:
+          ignore_errors: true
+      vars:
+        max: '99'
+        strict: true
+    - name: 'Verification'
+      assert:
+        that:
+          - 'assert_ansible_version__max_assertion is failed'
+          - 'assert_ansible_version__max_assertion.msg is regex("Version comparison: invalid version number")'
+        fail_msg: 'assertion result : {{ assert_ansible_version__max_assertion | to_json }}'
+
+- name: 'When min and max provided and version >= min and version < max, then succeeds'
   include_role:
     name: 'assert_ansible_version'
   vars:

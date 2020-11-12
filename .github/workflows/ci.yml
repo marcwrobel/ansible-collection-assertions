@@ -34,7 +34,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        distro: [ 'centos8', 'debian10', 'ubuntu2004' ]
+        distro: [ 'debian10', 'ubuntu2004', 'centos8', 'fedora32', 'amazonlinux2' ]
     steps:
       - name: 'Check out the codebase'
         uses: 'actions/checkout@v2'

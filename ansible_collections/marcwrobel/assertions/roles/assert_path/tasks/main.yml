@@ -1,0 +1,72 @@
+---
+
+- name: 'Clear assertion variables'
+  set_fact:
+    assert_path__exists_assertion:
+    assert_path__type_supported_assertion:
+    assert_path__type_file_assertion:
+    assert_path__type_directory_assertion:
+    assert_path__type_link_assertion:
+    assert_path__mode_assertion:
+    assert_path__owner_assertion:
+    assert_path__group_assertion:
+
+- name: 'Get {{ path }} status'
+  stat:
+    path: '{{ path }}'
+  register: 'p'
+
+- name: "Assert that {{ path }} exists is {{ exists }}"
+  assert:
+    that: "p.stat.exists == exists"
+    fail_msg: 'Expecting {{ path }} to{{ exists | ternary("", " not") }} exist, but was{{ p.stat.exists | ternary("", " not") }}.'
+  register: 'assert_path__exists_assertion'
+
+- name: "Assert that {{ type }} is supported"
+  assert:
+    that: 'type in assert_path__supported_types'
+    fail_msg: 'Unsupported type {{ type }}. Type must be in : {{ assert_path__supported_types | join(", ") }}.'
+  when: 'exists and type is defined'
+  register: 'assert_path__type_supported_assertion'
+
+- name: "Assert that {{ path }} type is file"
+  assert:
+    that: 'p.stat.isreg'
+    fail_msg: 'Expecting {{ path }} to be a regular file, but was not.'
+  when: 'exists and type is defined and type == "file"'
+  register: 'assert_path__type_file_assertion'
+
+- name: "Assert that {{ path }} type is directory"
+  assert:
+    that: 'p.stat.isdir'
+    fail_msg: 'Expecting {{ path }} to be a directory, but was not.'
+  when: 'exists and type is defined and type == "directory"'
+  register: 'assert_path__type_directory_assertion'
+
+- name: "Assert that {{ path }} type is link"
+  assert:
+    that: 'p.stat.islnk'
+    fail_msg: 'Expecting {{ path }} to be a link, but was not.'
+  when: 'exists and type is defined and type == "link"'
+  register: 'assert_path__type_link_assertion'
+
+- name: "Assert that {{ path }} mode is {{ mode }}"
+  assert:
+    that: 'p.stat.mode == mode'
+    fail_msg: 'Expecting {{ path }} to have a mode equals to {{ mode }}, but was {{ p.stat.mode }}.'
+  when: 'exists and mode is defined'
+  register: 'assert_path__mode_assertion'
+
+- name: "Assert that {{ path }} owner is {{ owner }}"
+  assert:
+    that: 'p.stat.pw_name == owner'
+    fail_msg: 'Expecting {{ path }} owner to be {{ owner }}, but was {{ p.stat.pw_name }}.'
+  when: 'exists and owner is defined'
+  register: 'assert_path__owner_assertion'
+
+- name: "Assert that {{ path }} group is {{ group }}"
+  assert:
+    that: 'p.stat.gr_name == group'
+    fail_msg: 'Expecting {{ path }} group to be {{ group }}, but was {{ p.stat.gr_name }}.'
+  when: 'exists and group is defined'
+  register: 'assert_path__group_assertion'
