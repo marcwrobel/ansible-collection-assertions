@@ -11,8 +11,8 @@ with the (default) Ansible test verifier.
 
 This collection supports the following assertions :
 
-- [assert_ansible_version](/ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Asserts that Ansible version is between the given
-  versions.
+- [assert_ansible_version](/ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Assertions on Ansible version.
+- [assert_file_content](/ansible_collections/marcwrobel/assertions/roles/assert_file_content/README.md): Assertions on file content.
 - [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions for paths.
 
 Take a look at each assertion README for a more comprehensible documentation with usages.

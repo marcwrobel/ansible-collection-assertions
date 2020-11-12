@@ -1,12 +1,12 @@
-# assert_path
+# marcwrobel.assertions.assert_path
 
 Assertions for paths : existence, type, mode, owner, group.
 
 ## Role variables
 
-Available variables are listed below:
+This role is using the following variables:
 
-- `path` (`path`, required) - the file path.
+- `path` (`path`, required) - the path to test.
 - `exists` (`boolean`, default=`true`) - whether the path exists.
 - `type` (`string`, optional) - expected type of the path, if it exists. Supported types are :
   - `file`: path is a regular file
@@ -20,7 +20,7 @@ Available variables are listed below:
 
     - name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
       include_role:
-        name: 'assert_file'
+        name: 'assert_path'
       vars:
         path: '/path/to/file'
         type: 'file'
@@ -30,7 +30,7 @@ Available variables are listed below:
 
     - name: 'Assert that /path/to/file does not exist'
       include_role:
-        name: 'assert_file'
+        name: 'assert_path'
       vars:
         path: '/path/to/file'
         exists: false

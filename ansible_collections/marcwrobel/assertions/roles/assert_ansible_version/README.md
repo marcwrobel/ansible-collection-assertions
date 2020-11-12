@@ -1,13 +1,13 @@
-# assert_ansible_version
+# marcwrobel.assertions.assert_ansible_version
 
-Asserts that [Ansible version](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#ansible-version) is between the given versions.
+Assertions on [Ansible version](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#ansible-version).
 
-This assertion is using the [`version` test](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions) internally. It means
-the comparison respects the `version` test specification.
+This role is using the [`version` test](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions) internally : versions
+comparison respects the `version` test specification.
 
 ## Role variables
 
-Available variables are listed below:
+This role is using the following variables:
 
 - `min` (`string`, optional) - the minimum required Ansible version, included (`min >= ansible_version.full`).
 - `max` (`string`, optional) - the maximum required Ansible version, excluded (`ansible_version.full < max`).

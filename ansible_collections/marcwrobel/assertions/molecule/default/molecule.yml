@@ -5,7 +5,7 @@ dependency:
 driver:
   name: 'docker'
 platforms:
-  - name: 'instance'
+  - name: '${MOLECULE_DISTRO:-debian10}'
     image: 'geerlingguy/docker-${MOLECULE_DISTRO:-debian10}-ansible:latest'
     privileged: true
     pre_build_image: true

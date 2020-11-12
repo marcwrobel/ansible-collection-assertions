@@ -5,5 +5,6 @@
   collections:
     - 'marcwrobel.assertions'
   tasks:
-    - include_tasks: 'verify-ansible-version.yml'
-    - include_tasks: 'verify-path.yml'
+    - include_tasks: 'verify-assert_file_content.yml'
+    - include_tasks: 'verify-assert_path.yml'
+    - include_tasks: 'verify-assert_ansible_version.yml'

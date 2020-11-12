@@ -2,6 +2,7 @@
 
 - name: 'Clear assertion variables'
   set_fact:
+    assert_path__path_defined_assertion:
     assert_path__exists_assertion:
     assert_path__type_supported_assertion:
     assert_path__type_file_assertion:
@@ -10,6 +11,12 @@
     assert_path__mode_assertion:
     assert_path__owner_assertion:
     assert_path__group_assertion:
+
+- name: "Assert that path variable is defined"
+  assert:
+    that: "path is defined"
+    fail_msg: 'The variable "path" must be defined.'
+  register: 'assert_path__path_defined_assertion'
 
 - name: 'Get {{ path }} status'
   stat:

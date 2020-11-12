@@ -3,4 +3,12 @@
   hosts: 'all'
   collections:
     - 'marcwrobel.assertions'
-  roles: []
+  tasks:
+    - name: 'Create test file for assert_file_content'
+      copy:
+        dest: '/tmp/test'
+        mode: '0644'
+        content: |
+          line1
+          line2
+          line3
