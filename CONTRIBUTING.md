@@ -30,7 +30,6 @@ The best and easiest way to install those dependencies is to use the `requiremen
 
 Linting is performed using YAMLlint and Ansible-lint :
 
-    cd <repository>
     yamllint .
     ansible-lint
 
@@ -38,6 +37,7 @@ Linting is performed using YAMLlint and Ansible-lint :
 
 Integration tests are executed by Molecule :
 
+    cd ansible_collections/marcwrobel/assertions
     molecule test
 
 During the development lifecycle you may prefer to keep the instances running and run `molecule` commands individually:

@@ -1,0 +1,20 @@
+---
+
+- name: 'Clear assertion variables'
+  set_fact:
+    assert_ansible_version__min_assertion:
+    assert_ansible_version__max_assertion:
+
+- name: "Assert that Ansible version is >= {{ min }}"
+  assert:
+    that: "ansible_version.full is version(min, '>=', strict)"
+    fail_msg: 'Expecting Ansible version to be >= {{ min }}, but was {{ ansible_version.full }}'
+  register: 'assert_ansible_version__min_assertion'
+  when: 'min is defined'
+
+- name: "Assert Ansible version is < {{ max }}"
+  assert:
+    that: "ansible_version.full is version(max, '<', strict)"
+    fail_msg: 'Expecting Ansible version to be < {{ max }}, but was {{ ansible_version.full }}'
+  register: 'assert_ansible_version__max_assertion'
+  when: 'max is defined'

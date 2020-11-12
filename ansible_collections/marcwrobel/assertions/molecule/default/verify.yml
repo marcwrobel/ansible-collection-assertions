@@ -1,0 +1,8 @@
+---
+- name: 'Verify'
+  hosts: 'all'
+  gather_facts: false
+  collections:
+    - 'marcwrobel.assertions'
+  tasks:
+    - include_tasks: 'verify-ansible-version.yml'

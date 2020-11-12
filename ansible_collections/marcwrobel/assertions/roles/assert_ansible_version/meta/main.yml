@@ -1,0 +1,90 @@
+dependencies: [ ]
+
+galaxy_info:
+  author: 'Marc Wrobel'
+  description: 'Asserts that Ansible version is between the given versions.'
+  license: 'MIT'
+  min_ansible_version: '2.8'
+  # All platforms found at https://galaxy.ansible.com/api/v1/platforms/
+  platforms:
+    - name: 'AIX'
+      versions: [ 'all' ]
+    - name: 'Alpine'
+      versions: [ 'all' ]
+    - name: 'Amazon'
+      versions: [ 'all' ]
+    - name: 'Amazon Linux 2'
+      versions: [ 'all' ]
+    - name: 'aos'
+      versions: [ 'all' ]
+    - name: 'ArchLinux'
+      versions: [ 'all' ]
+    - name: 'ClearLinux'
+      versions: [ 'all' ]
+    - name: 'Cumulus'
+      versions: [ 'all' ]
+    - name: 'Debian'
+      versions: [ 'all' ]
+    - name: 'DellOS'
+      versions: [ 'all' ]
+    - name: 'Devuan'
+      versions: [ 'all' ]
+    - name: 'DragonFlyBSD'
+      versions: [ 'all' ]
+    - name: 'EL'
+      versions: [ 'all' ]
+    - name: 'eos'
+      versions: [ 'all' ]
+    - name: 'Fedora'
+      versions: [ 'all' ]
+    - name: 'FreeBSD'
+      versions: [ 'all' ]
+    - name: 'GenericBSD'
+      versions: [ 'all' ]
+    - name: 'GenericLinux'
+      versions: [ 'all' ]
+    - name: 'GenericUNIX'
+      versions: [ 'all' ]
+    - name: 'Gentoo'
+      versions: [ 'all' ]
+    - name: 'HardenedBSD'
+      versions: [ 'all' ]
+    - name: 'IOS'
+      versions: [ 'all' ]
+    - name: 'Junos'
+      versions: [ 'all' ]
+    - name: 'macOS'
+      versions: [ 'all' ]
+    - name: 'MacOSX'
+      versions: [ 'all' ]
+    - name: 'NXOS'
+      versions: [ 'all' ]
+    - name: 'OpenBSD'
+      versions: [ 'all' ]
+    - name: 'opensuse'
+      versions: [ 'all' ]
+    - name: 'os10'
+      versions: [ 'all' ]
+    - name: 'PAN-OS'
+      versions: [ 'all' ]
+    - name: 'SLES'
+      versions: [ 'all' ]
+    - name: 'SmartOS'
+      versions: [ 'all' ]
+    - name: 'Solaris'
+      versions: [ 'all' ]
+    - name: 'Synology'
+      versions: [ 'all' ]
+    - name: 'TMOS'
+      versions: [ 'all' ]
+    - name: 'Ubuntu'
+      versions: [ 'all' ]
+    - name: 'vCenter'
+      versions: [ 'all' ]
+    - name: 'Void Linux'
+      versions: [ 'all' ]
+    - name: 'vSphere'
+      versions: [ 'all' ]
+    - name: 'Windows'
+      versions: [ 'all' ]
+  galaxy_tags: [ 'assertion', 'ansible' ]
