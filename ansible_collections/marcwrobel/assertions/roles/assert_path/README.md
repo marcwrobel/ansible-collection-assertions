@@ -7,11 +7,8 @@ Assertions for paths : existence, type, mode, owner, group.
 This role is using the following variables:
 
 - `path` (`path`, required) - the path to test.
-- `exists` (`boolean`, default=`true`) - whether the path exists.
-- `type` (`string`, optional) - expected type of the path, if it exists. Supported types are :
-  - `file`: path is a regular file
-  - `directory`: path is a directory
-  - `link`: path is a symbolic link
+- `exists` (`boolean`, required, default=`true`) - whether the path exists.
+- `type` (`file | directory | link`, optional) - expected type of the path, if it exists. Supported types are :
 - `mode` (`string`, optional) - expected mode in octal representation (e.g. `0644`) of the path, if it exists. Mode must be .
 - `owner` (`string`, optional) - expected owner name (not uid) of the path, if it exists.
 - `group` (`string`, optional) - expected group name (not guid) of the path, if it exists.

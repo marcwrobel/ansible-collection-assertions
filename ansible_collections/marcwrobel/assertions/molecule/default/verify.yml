@@ -1,10 +1,12 @@
 ---
 - name: 'Verify'
   hosts: 'all'
-  gather_facts: false
+  #gather_facts: false # facts are needed for some tests
   collections:
     - 'marcwrobel.assertions'
   tasks:
+    - include_tasks: 'verify-assert_service.yml'
+      when: 'ansible_distribution == "Debian"' # See verify-assert_service.yml
+    - include_tasks: 'verify-assert_ansible_version.yml'
     - include_tasks: 'verify-assert_file_content.yml'
     - include_tasks: 'verify-assert_path.yml'
-    - include_tasks: 'verify-assert_ansible_version.yml'

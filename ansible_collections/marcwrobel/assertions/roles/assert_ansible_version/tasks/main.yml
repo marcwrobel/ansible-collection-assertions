@@ -1,6 +1,6 @@
 ---
 
-- name: 'Clear assertion variables'
+- name: 'Clear assert_* variables'
   set_fact:
     assert_ansible_version__min_assertion:
     assert_ansible_version__max_assertion:

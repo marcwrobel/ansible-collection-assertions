@@ -1,6 +1,6 @@
 ---
 
-- name: 'Clear assertion variables'
+- name: 'Clear assert_* variables'
   set_fact:
     assert_path__path_defined_assertion:
     assert_path__exists_assertion:
@@ -26,7 +26,7 @@
 - name: "Assert that {{ path }} exists is {{ exists }}"
   assert:
     that: "p.stat.exists == exists"
-    fail_msg: 'Expecting {{ path }} to{{ exists | ternary("", " not") }} exist, but was{{ p.stat.exists | ternary("", " not") }}.'
+    fail_msg: 'Expecting {{ path }} to{{ exists | ternary("", " not") }} exist, but was{{ (not exists) | ternary("", " not") }}.'
   register: 'assert_path__exists_assertion'
 
 - name: "Assert that {{ type }} is supported"
