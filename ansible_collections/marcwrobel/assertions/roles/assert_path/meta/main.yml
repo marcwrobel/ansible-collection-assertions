@@ -2,7 +2,7 @@ dependencies: [ ]
 
 galaxy_info:
   author: 'Marc Wrobel'
-  description: 'Assertions for paths : existence, type, mode, owner, group.'
+  description: 'Assertions on paths : existence, type, mode, owner, group.'
   license: 'MIT'
   min_ansible_version: '2.8'
   platforms:

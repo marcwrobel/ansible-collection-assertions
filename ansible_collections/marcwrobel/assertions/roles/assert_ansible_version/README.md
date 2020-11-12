@@ -1,6 +1,6 @@
 # marcwrobel.assertions.assert_ansible_version
 
-Assertions on [Ansible version](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#ansible-version).
+Assertions on the current [Ansible version](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#ansible-version).
 
 This role is using the [`version` test](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions) internally : versions
 comparison respects the `version` test specification.
