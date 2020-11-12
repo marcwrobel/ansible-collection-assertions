@@ -1,0 +1,186 @@
+---
+
+- name: 'When path exists, then assert existence succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/'
+    exists: true
+
+- name: 'When path exists, then assert non-existence fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/'
+        exists: false
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__exists_assertion is failed'
+          - 'assert_path__exists_assertion.msg == "Expecting / to not exist, but was."'
+        fail_msg: 'assertion result : {{ assert_path__exists_assertion | to_json }}'
+
+- name: 'When path does not exists, then check non-existence succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/does/not/exist'
+    exists: false
+
+- name: 'When path does not exists, then assert existence fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/does/not/exist'
+        exists: true
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__exists_assertion is failed'
+          - 'assert_path__exists_assertion.msg == "Expecting /does/not/exist to exist, but was not."'
+        fail_msg: 'assertion result : {{ assert_path__exists_assertion | to_json }}'
+
+- name: 'When path is file, then assert file type succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/etc/passwd'
+    type: 'file'
+
+- name: 'When path is file, then assert directory type fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/etc/passwd'
+        type: 'directory'
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__type_directory_assertion is failed'
+          - 'assert_path__type_directory_assertion.msg == "Expecting /etc/passwd to be a directory, but was not."'
+        fail_msg: 'assertion result : {{ assert_path__type_directory_assertion | to_json }}'
+
+- name: 'When path is directory, then check directory type succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/'
+    type: 'directory'
+
+- name: 'When path is directory, then assert file type fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/'
+        type: 'file'
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__type_file_assertion is failed'
+          - 'assert_path__type_file_assertion.msg == "Expecting / to be a regular file, but was not."'
+        fail_msg: 'assertion result : {{ assert_path__type_file_assertion | to_json }}'
+
+- name: 'When path type is unsupported, then fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/'
+        type: 'unsupported'
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__type_supported_assertion is failed'
+          - 'assert_path__type_supported_assertion.msg == "Unsupported type unsupported. Type must be in : file, directory, link."'
+        fail_msg: 'assertion result : {{ assert_path__type_supported_assertion | to_json }}'
+
+- name: 'When mode is correct, then assert mode succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/'
+    mode: '0755'
+
+- name: 'When mode is incorrect, then fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/'
+        mode: '0777'
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__mode_assertion is failed'
+          - 'assert_path__mode_assertion.msg == "Expecting / to have a mode equals to 0777, but was 0755."'
+        fail_msg: 'assertion result : {{ assert_path__mode_assertion | to_json }}'
+
+- name: 'When owner is correct, then assert owner succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/'
+    owner: 'root'
+
+- name: 'When owner is incorrect, then fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/'
+        owner: 'me'
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__owner_assertion is failed'
+          - 'assert_path__owner_assertion.msg == "Expecting / owner to be me, but was root."'
+        fail_msg: 'assertion result : {{ assert_path__owner_assertion | to_json }}'
+
+- name: 'When group is correct, then assert group succeeds'
+  include_role:
+    name: 'assert_path'
+  vars:
+    path: '/'
+    group: 'root'
+
+- name: 'When group is incorrect, then fails'
+  block:
+    - name: 'Assert'
+      include_role:
+        name: 'assert_path'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/'
+        group: 'me'
+    - name: 'Verify'
+      assert:
+        that:
+          - 'assert_path__group_assertion is failed'
+          - 'assert_path__group_assertion.msg == "Expecting / group to be me, but was root."'
+        fail_msg: 'assertion result : {{ assert_path__group_assertion | to_json }}'
