@@ -22,23 +22,25 @@ release number](https://wikipedia.org/wiki/Point_release) is rarely included in 
 
 ## Usage
 
-    - name: 'Assert that the distribution is supported'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_distribution'
-      vars:
-        is_in: [ 'Debian', 'RedHat 8', `Ubuntu 20.04` ]
+```yaml
+- name: 'Assert that the distribution is supported'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_distribution'
+  vars:
+    is_in: [ 'Debian', 'RedHat 8', 'Ubuntu 20.04' ]
 
-    # This is allowed, but always fails
-    - name: 'Assert nothing'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_distribution'
-      vars:
-        is_in: [ ]
+# This is allowed, but always fails
+- name: 'Assert nothing'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_distribution'
+  vars:
+    is_in: [ ]
 
-    # This is allowed, but do nothing
-    - name: 'Assert nothing'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_distribution'
+# This is allowed, but do nothing
+- name: 'Assert nothing'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_distribution'
+```
 
 ## Requirements
 

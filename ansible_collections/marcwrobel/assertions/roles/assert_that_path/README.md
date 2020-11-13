@@ -15,28 +15,30 @@ This role is using the following variables:
 
 ## Usage
 
-    - name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_path'
-      vars:
-        path: '/path/to/file'
-        has_type: 'file'
-        has_mode: '0640'
-        has_owner: 'root'
-        has_group: 'root'
+```yaml
+- name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
+    path: '/path/to/file'
+    has_type: 'file'
+    has_mode: '0640'
+    has_owner: 'root'
+    has_group: 'root'
 
-    - name: 'Assert that /path/to/file exists'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_path'
-      vars:
-        path: '/path/to/file'
+- name: 'Assert that /path/to/file exists'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
+    path: '/path/to/file'
 
-    - name: 'Assert that /path/to/file does not exist'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_path'
-      vars:
-        path: '/path/to/file'
-        exists: false
+- name: 'Assert that /path/to/file does not exist'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
+    path: '/path/to/file'
+    exists: false
+```
 
 ## Requirements
 

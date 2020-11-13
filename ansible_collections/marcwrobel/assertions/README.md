@@ -25,58 +25,68 @@ https://github.com/marcwrobel/ansible-collection-assertions/blob/cleanup-and-doc
 
 ### [`marcwrobel.assertions.assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md)
 
-    - name: 'Assert that Ansible version is 2.8.x or 2.9.x'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_ansible'
-      vars:
-        has_min_version: '2.8'
-        has_max_version: '2.10'
+```yaml
+- name: 'Assert that Ansible version is 2.8.x or 2.9.x'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_ansible'
+  vars:
+    has_min_version: '2.8'
+    has_max_version: '2.10'
+```
 
 The full `marcwrobel.assertions.assert_that_ansible` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md).
 
 ### [`marcwrobel.assertions.assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md)
 
-    - name: 'Assert that the distribution is supported'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_distribution'
-      vars:
-        is_in: [ 'Debian', 'RedHat 8', `Ubuntu 20.04` ]
+```yaml
+- name: 'Assert that the distribution is supported'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_distribution'
+  vars:
+    is_in: [ 'Debian', 'RedHat 8', 'Ubuntu 20.04' ]
+```
 
 The full `marcwrobel.assertions.assert_that_distribution` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md).
 
 ### [`marcwrobel.assertions.assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md)
 
-    - name: 'Assert that /tmp/test is managed by Ansible'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_file'
-      vars:
-        path: '/path/to/file'
-        has_content_matching: '^# Ansible managed'
+```yaml
+- name: 'Assert that /tmp/test is managed by Ansible'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_file'
+  vars:
+    path: '/path/to/file'
+    has_content_matching: '^# Ansible managed'
+```
 
 The full `marcwrobel.assertions.assert_that_file` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md).
 
 ### [`marcwrobel.assertions.assert_that_path`](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md)
 
-    - name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_path'
-      vars:
-        path: '/path/to/file'
-        has_type: 'file'
-        has_mode: '0640'
-        has_owner: 'root'
-        has_group: 'root'
+```yaml
+- name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
+    path: '/path/to/file'
+    has_type: 'file'
+    has_mode: '0640'
+    has_owner: 'root'
+    has_group: 'root'
+```
 
 The full `marcwrobel.assertions.assert_that_path` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md).
 
 ### [`marcwrobel.assertions.assert_that_service`](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md)
 
-    - name: 'Assert that firewalld.service exists, is running and is enabled'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_service'
-      vars:
-        name: 'firewalld.service'
-        has_state: 'running'
-        has_status: 'enabled'
+```yaml
+- name: 'Assert that firewalld.service exists, is running and is enabled'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_service'
+  vars:
+    name: 'firewalld.service'
+    has_state: 'running'
+    has_status: 'enabled'
+```
 
 The full `marcwrobel.assertions.assert_that_service` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md).

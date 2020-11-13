@@ -13,37 +13,39 @@ This role is using the following variables:
 
 ## Usage
 
-    - name: 'Assert that Ansible version is >= 2.8 and < 2.10'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_ansible'
-      vars:
-        has_min_version: '2.8'
-        has_max_version: '2.10'
+```yaml
+- name: 'Assert that Ansible version is >= 2.8 and < 2.10'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_ansible'
+  vars:
+    has_min_version: '2.8'
+    has_max_version: '2.10'
 
-    - name: 'Assert that Ansible version is >= 2.8'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_ansible'
-      vars:
-        has_min_version: '2.8'
+- name: 'Assert that Ansible version is >= 2.8'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_ansible'
+  vars:
+    has_min_version: '2.8'
 
-    - name: 'Assert that Ansible version is < 2.10'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_ansible'
-      vars:
-        has_max_version: '2.10'
+- name: 'Assert that Ansible version is < 2.10'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_ansible'
+  vars:
+    has_max_version: '2.10'
 
-    - name: 'Assert that Ansible version is >= 2.8 and < 2.10 with strict version parsing'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_ansible'
-      vars:
-        has_min_version: '2.8'
-        has_max_version: '2.10'
-        strict_version_parsing: true
+- name: 'Assert that Ansible version is >= 2.8 and < 2.10 with strict version parsing'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_ansible'
+  vars:
+    has_min_version: '2.8'
+    has_max_version: '2.10'
+    strict_version_parsing: true
 
-    # This is allowed, but do nothing
-    - name: 'Assert nothing'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_ansible'
+# This is allowed, but do nothing
+- name: 'Assert nothing'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_ansible'
+```
 
 ## Requirements
 

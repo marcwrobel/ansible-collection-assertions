@@ -15,35 +15,37 @@ This role is using the following variables:
 
 ## Usage
 
-    - name: 'Assert that /tmp/test is managed by Ansible'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_file'
-      vars:
-        path: '/path/to/file'
-        has_content_matching: '^# Ansible managed'
+```yaml
+- name: 'Assert that /tmp/test is managed by Ansible'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_file'
+  vars:
+    path: '/path/to/file'
+    has_content_matching: '^# Ansible managed'
 
-    - name: 'Assert that /tmp/toto match the given multiline string'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_file'
-      vars:
-        path: '/path/to/file'
-        has_content_matching: 'line1\n.+\nline3'
-        multiline_for_content_matching: false
+- name: 'Assert that /tmp/toto match the given multiline string'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_file'
+  vars:
+    path: '/path/to/file'
+    has_content_matching: 'line1\n.+\nline3'
+    multiline_for_content_matching: false
 
-    - name: 'Assert that /tmp/toto match the given case-sensitive string'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_file'
-      vars:
-        path: '/path/to/file'
-        has_content_matching: 'Case-sensitive string.'
-        ignorecase_for_content_matching: false
+- name: 'Assert that /tmp/toto match the given case-sensitive string'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_file'
+  vars:
+    path: '/path/to/file'
+    has_content_matching: 'Case-sensitive string.'
+    ignorecase_for_content_matching: false
 
-    # This is allowed, but do nothing
-    - name: 'Assert nothing'
-      vars:
-        path: '/path/to/file'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_file'
+# This is allowed, but do nothing
+- name: 'Assert nothing'
+  vars:
+    path: '/path/to/file'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_file'
+```
 
 ## Requirements
 

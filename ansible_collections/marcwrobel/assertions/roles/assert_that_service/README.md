@@ -13,26 +13,28 @@ This role is using the following variables:
 
 ## Usage
 
-    - name: 'Assert that firewalld.service exists, is running and is enabled'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_service'
-      vars:
-        name: 'firewalld.service'
-        has_state: 'running'
-        has_status: 'enabled'
+```yaml
+- name: 'Assert that firewalld.service exists, is running and is enabled'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_service'
+  vars:
+    name: 'firewalld.service'
+    has_state: 'running'
+    has_status: 'enabled'
 
-    - name: 'Assert that firewalld.service exists'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_service'
-      vars:
-        name: 'firewalld.service'
+- name: 'Assert that firewalld.service exists'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_service'
+  vars:
+    name: 'firewalld.service'
 
-    - name: 'Assert that firewalld.service does not exist'
-      include_role:
-        name: 'marcwrobel.assertions.assert_that_service'
-      vars:
-        name: 'firewalld.service'
-        exists: false
+- name: 'Assert that firewalld.service does not exist'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_service'
+  vars:
+    name: 'firewalld.service'
+    exists: false
+```
 
 ## Requirements
 
