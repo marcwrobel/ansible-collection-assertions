@@ -9,7 +9,6 @@ with the (default) Ansible test verifier. It can also be used to ensure a playbo
 
 This collection provides the following assertions :
 
-https://github.com/marcwrobel/ansible-collection-assertions/blob/cleanup-and-doc/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md
 - [`marcwrobel.assertions.assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md) - assertions on Ansible
   (`has_min_version`, `has_max_version`).
 - [`marcwrobel.assertions.assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md) - assertions on
