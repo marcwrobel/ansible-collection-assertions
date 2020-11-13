@@ -21,6 +21,12 @@ This role is using the following variables:
         has_state: 'running'
         has_status: 'enabled'
 
+    - name: 'Assert that firewalld.service exists'
+      include_role:
+        name: 'assert_that_service'
+      vars:
+        name: 'firewalld.service'
+
     - name: 'Assert that firewalld.service does not exist'
       include_role:
         name: 'assert_that_service'

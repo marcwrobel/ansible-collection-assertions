@@ -40,6 +40,11 @@ This role is using the following variables:
         has_max_version: '2.10'
         strict_version_parsing: true
 
+    # This is allowed, but do nothing
+    - name: 'Assert nothing'
+      include_role:
+        name: 'assert_that_ansible'
+
 ## Requirements
 
 None.

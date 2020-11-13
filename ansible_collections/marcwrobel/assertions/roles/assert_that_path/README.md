@@ -25,6 +25,12 @@ This role is using the following variables:
         has_owner: 'root'
         has_group: 'root'
 
+    - name: 'Assert that /path/to/file exists'
+      include_role:
+        name: 'assert_that_path'
+      vars:
+        path: '/path/to/file'
+
     - name: 'Assert that /path/to/file does not exist'
       include_role:
         name: 'assert_that_path'
