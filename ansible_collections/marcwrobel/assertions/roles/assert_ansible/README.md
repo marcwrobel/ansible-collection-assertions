@@ -1,4 +1,4 @@
-# marcwrobel.assertions.assert_ansible_version
+# marcwrobel.assertions.assert_ansible
 
 Assertions on the current [Ansible version](https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#ansible-version).
 
@@ -18,26 +18,26 @@ This role is using the following variables:
 
     - name: 'Assert that Ansible version is >= 2.8 and < 2.10'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
       vars:
         min: '2.8'
         max: '2.10'
 
     - name: 'Assert that Ansible version is >= 2.8'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
       vars:
         min: '2.8'
 
     - name: 'Assert that Ansible version is < 2.10'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
       vars:
         max: '2.10'
 
     - name: 'Assert that Ansible version is >= 2.8 and < 2.10 (strict)'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
       vars:
         min: '2.8'
         max: '2.10'

@@ -11,7 +11,7 @@ with the (default) Ansible test verifier.
 
 This collection supports the following assertions :
 
-- [assert_ansible_version](/ansible_collections/marcwrobel/assertions/roles/assert_ansible_version/README.md): Assertions on the current Ansible version.
+- [assert_ansible](/ansible_collections/marcwrobel/assertions/roles/assert_ansible/README.md): Assertions on the current Ansible version.
 - [assert_distribution](/ansible_collections/marcwrobel/assertions/roles/assert_distribution/README.md): Assertions on the current distribution version: name,
   version.
 - [assert_file_content](/ansible_collections/marcwrobel/assertions/roles/assert_file_content/README.md): Assertions on file content.

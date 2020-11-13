@@ -2,11 +2,11 @@
 
 - name: 'When min and max not provided, then succeeds'
   include_role:
-    name: 'assert_ansible_version'
+    name: 'assert_ansible'
 
 - name: 'When only min provided and version >= min, then succeeds'
   include_role:
-    name: 'assert_ansible_version'
+    name: 'assert_ansible'
   vars:
     min: '1'
 
@@ -14,7 +14,7 @@
   block:
     - name: 'Assertion'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
         apply:
           ignore_errors: true
       vars:
@@ -22,15 +22,15 @@
     - name: 'Verification'
       assert:
         that:
-          - 'assert_ansible_version__min_assertion is failed'
-          - 'assert_ansible_version__min_assertion.msg is regex("^Expecting Ansible version to be >= 99, but was")'
-        fail_msg: 'assertion result : {{ assert_ansible_version__min_assertion | to_json }}'
+          - 'assert_ansible__min_version_assertion is failed'
+          - 'assert_ansible__min_version_assertion.msg is regex("^Expecting Ansible version to be >= 99, but was")'
+        fail_msg: 'assertion result : {{ assert_ansible__min_version_assertion | to_json }}'
 
 - name: 'When only min provided and version >= min but strict is true, then fails'
   block:
     - name: 'Assertion'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
         apply:
           ignore_errors: true
       vars:
@@ -39,13 +39,13 @@
     - name: 'Verification'
       assert:
         that:
-          - 'assert_ansible_version__min_assertion is failed'
-          - 'assert_ansible_version__min_assertion.msg is regex("Version comparison: invalid version number")'
-        fail_msg: 'assertion result : {{ assert_ansible_version__min_assertion | to_json }}'
+          - 'assert_ansible__min_version_assertion is failed'
+          - 'assert_ansible__min_version_assertion.msg is regex("Version comparison: invalid version number")'
+        fail_msg: 'assertion result : {{ assert_ansible__min_version_assertion | to_json }}'
 
 - name: 'When only max provided and version < max, then succeeds'
   include_role:
-    name: 'assert_ansible_version'
+    name: 'assert_ansible'
   vars:
     max: '99'
 
@@ -53,7 +53,7 @@
   block:
     - name: 'Assertion'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
         apply:
           ignore_errors: true
       vars:
@@ -61,15 +61,15 @@
     - name: 'Verification'
       assert:
         that:
-          - 'assert_ansible_version__max_assertion is failed'
-          - 'assert_ansible_version__max_assertion.msg is regex("^Expecting Ansible version to be < 2.7, but was")'
-        fail_msg: 'assertion result : {{ assert_ansible_version__max_assertion | to_json }}'
+          - 'assert_ansible__max_version_assertion is failed'
+          - 'assert_ansible__max_version_assertion.msg is regex("^Expecting Ansible version to be < 2.7, but was")'
+        fail_msg: 'assertion result : {{ assert_ansible__max_version_assertion | to_json }}'
 
 - name: 'When only max provided and version > max but strict is true, then fails'
   block:
     - name: 'Assertion'
       include_role:
-        name: 'assert_ansible_version'
+        name: 'assert_ansible'
         apply:
           ignore_errors: true
       vars:
@@ -78,13 +78,13 @@
     - name: 'Verification'
       assert:
         that:
-          - 'assert_ansible_version__max_assertion is failed'
-          - 'assert_ansible_version__max_assertion.msg is regex("Version comparison: invalid version number")'
-        fail_msg: 'assertion result : {{ assert_ansible_version__max_assertion | to_json }}'
+          - 'assert_ansible__max_version_assertion is failed'
+          - 'assert_ansible__max_version_assertion.msg is regex("Version comparison: invalid version number")'
+        fail_msg: 'assertion result : {{ assert_ansible__max_version_assertion | to_json }}'
 
 - name: 'When min and max provided and version >= min and version < max, then succeeds'
   include_role:
-    name: 'assert_ansible_version'
+    name: 'assert_ansible'
   vars:
     min: '2.8'
     max: '99'

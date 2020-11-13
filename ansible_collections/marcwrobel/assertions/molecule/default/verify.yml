@@ -7,7 +7,7 @@
   tasks:
 
     - include_tasks: 'verify-assert_distribution_version.yml'
-    - include_tasks: 'verify-assert_ansible_version.yml'
+    - include_tasks: 'verify-assert_ansible.yml'
     - include_tasks: 'verify-assert_file_content.yml'
     - include_tasks: 'verify-assert_path.yml'
     - include_tasks: 'verify-assert_service.yml'
