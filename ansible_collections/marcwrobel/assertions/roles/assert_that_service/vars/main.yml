@@ -1,7 +1,7 @@
 ---
 
 # Supported states - see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_facts_module.html
-assert_service__supported_states: [ 'running', 'stopped', 'unknown' ]
+assert_that_service__supported_states: [ 'running', 'stopped', 'unknown' ]
 
 # Supported statuses - see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_facts_module.html
-assert_service__supported_statuses: [ 'enabled', 'disabled', 'static', 'indirect', 'unknown' ]
+assert_that_service__supported_statuses: [ 'enabled', 'disabled', 'static', 'indirect', 'unknown' ]

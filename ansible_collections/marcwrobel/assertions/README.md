@@ -9,13 +9,14 @@ with the (default) Ansible test verifier. It can also be used to ensure a playbo
 
 This collection supports the following assertions :
 
-- [`assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md): Assertions on Ansible (`has_min_version`,
+- [`assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md) - assertions on Ansible (`has_min_version`,
   `has_max_version`).
-- [`assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md): Assertions on distributions (`is_in`).
-- [`assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md): Assertions on files (`has_content_matching`).
-- [`assert_that_path`](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md): Assertions for paths (`exists`, `has_type`, `has_mode`,
+- [`assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md) - assertions on distributions (`is_in`).
+- [`assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md) - assertions on files (`has_content_matching`).
+- [`assert_that_path`](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md) - assertions for paths (`exists`, `has_type`, `has_mode`,
   `has_owner`, `has_group`).
-- [assert_service](/ansible_collections/marcwrobel/assertions/roles/assert_service/README.md): Assertions on services : existence, state, status.
+- [`assert_that_service`](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md) - assertions on services (`exists`, `has_state`,
+  `has_status`).
 
 ## Examples
 
@@ -64,3 +65,15 @@ The full `assert_that_file` role documentation is available in its own [README](
         has_group: 'root'
 
 The full `assert_that_path` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md).
+
+### `assert_that_service`
+
+    - name: 'Assert that firewalld.service exists, is running and is enabled'
+      include_role:
+        name: 'assert_that_service'
+      vars:
+        name: 'firewalld.service'
+        has_state: 'running'
+        has_status: 'enabled'
+
+The full `assert_that_service` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md).

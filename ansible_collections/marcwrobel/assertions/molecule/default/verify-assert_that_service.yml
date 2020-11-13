@@ -3,11 +3,11 @@
 # Those tests only work with the Docker image docker-debian10-ansible.
 # With this image systemd is not started but the ansible_facts.services variable has the following value :
 # {"sudo": {"name": "sudo", "state": "stopped", "source": "sysv"}}
-# That is sufficient for testing the assert_service role for the time being...
+# That is sufficient for testing the assert_that_service role for the time being...
 
 - name: 'When service exists, then assert existence succeeds'
   include_role:
-    name: 'assert_service'
+    name: 'assert_that_service'
   vars:
     name: 'sudo'
     exists: true
@@ -16,7 +16,7 @@
   block:
     - name: 'Assert'
       include_role:
-        name: 'assert_service'
+        name: 'assert_that_service'
         apply:
           ignore_errors: true
       vars:
@@ -25,13 +25,13 @@
     - name: 'Verify'
       assert:
         that:
-          - 'assert_service__exists_assertion is failed'
-          - 'assert_service__exists_assertion.msg == "Expecting sudo to not exist, but was."'
-        fail_msg: 'assertion result : {{ assert_service__exists_assertion | to_json }}'
+          - 'assert_that_service__exists_assertion is failed'
+          - 'assert_that_service__exists_assertion.msg == "Expecting sudo to not exist, but was."'
+        fail_msg: 'assertion result : {{ assert_that_service__exists_assertion | to_json }}'
 
 - name: 'When service does not exist, then assert non-existence succeeds'
   include_role:
-    name: 'assert_service'
+    name: 'assert_that_service'
   vars:
     name: 'toto'
     exists: false
@@ -40,7 +40,7 @@
   block:
     - name: 'Assert'
       include_role:
-        name: 'assert_service'
+        name: 'assert_that_service'
         apply:
           ignore_errors: true
       vars:
@@ -48,13 +48,13 @@
     - name: 'Verify'
       assert:
         that:
-          - 'assert_service__exists_assertion is failed'
-          - 'assert_service__exists_assertion.msg == "Expecting toto to exist, but was not."'
-        fail_msg: 'assertion result : {{ assert_service__exists_assertion | to_json }}'
+          - 'assert_that_service__exists_assertion is failed'
+          - 'assert_that_service__exists_assertion.msg == "Expecting toto to exist, but was not."'
+        fail_msg: 'assertion result : {{ assert_that_service__exists_assertion | to_json }}'
 
 - name: 'When service is stopped, then assert state is stopped succeeds'
   include_role:
-    name: 'assert_service'
+    name: 'assert_that_service'
   vars:
     name: 'sudo'
     has_state: 'stopped'
@@ -63,7 +63,7 @@
   block:
     - name: 'Assert'
       include_role:
-        name: 'assert_service'
+        name: 'assert_that_service'
         apply:
           ignore_errors: true
       vars:
@@ -72,15 +72,15 @@
     - name: 'Verify'
       assert:
         that:
-          - 'assert_service__has_state_assertion is failed'
-          - 'assert_service__has_state_assertion.msg == "Expecting sudo to have state running, but state is stopped."'
-        fail_msg: 'assertion result : {{ assert_service__has_state_assertion | to_json }}'
+          - 'assert_that_service__has_state_assertion is failed'
+          - 'assert_that_service__has_state_assertion.msg == "Expecting sudo to have state running, but state is stopped."'
+        fail_msg: 'assertion result : {{ assert_that_service__has_state_assertion | to_json }}'
 
 - name: 'When status is not provided by the given source, then fails'
   block:
     - name: 'Assert'
       include_role:
-        name: 'assert_service'
+        name: 'assert_that_service'
         apply:
           ignore_errors: true
       vars:
@@ -88,7 +88,7 @@
         has_status: 'enabled'
     - name: 'Verify'
       assert:
+        # message cannot be check because ignore_errors is true and assert_that_service__has_status_assertion is used by two assertions.
         that:
-          - 'assert_service__has_status_provided_assertion is failed'
-          - 'assert_service__has_status_provided_assertion.msg == "Expecting sudo to have status enabled, but status is not provided by sysv."'
-        fail_msg: 'assertion result : {{ assert_service__has_status_provided_assertion | to_json }}'
+          - 'assert_that_service__has_status_assertion is failed'
+        fail_msg: 'assertion result : {{ assert_that_service__has_status_assertion | to_json }}'

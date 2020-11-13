@@ -2,7 +2,7 @@ dependencies: [ ]
 
 galaxy_info:
   author: 'Marc Wrobel'
-  description: 'Assertions on services : existence, state, status.'
+  description: 'Assertions on services (exists, has_state, has_status).'
   license: 'MIT'
   min_ansible_version: '2.8'
   platforms:
@@ -20,4 +20,4 @@ galaxy_info:
       versions: [ 'all' ]
     - name: 'Ubuntu'
       versions: [ 'all' ]
-  galaxy_tags: [ 'assertion', 'service', 'existence', 'state', 'status' ]
+  galaxy_tags: [ 'assertion', 'service' ]

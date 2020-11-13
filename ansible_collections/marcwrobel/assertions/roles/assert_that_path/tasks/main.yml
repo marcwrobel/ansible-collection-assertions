@@ -1,6 +1,6 @@
 ---
 
-- name: 'Clear assert_* variables'
+- name: 'Clear assertions result variables'
   set_fact:
     assert_that_path__exists_assertion:
     assert_that_path__has_type_file_assertion:

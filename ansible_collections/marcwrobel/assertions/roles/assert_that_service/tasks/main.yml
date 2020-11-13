@@ -1,0 +1,69 @@
+---
+
+- name: 'Clear assertions result variables'
+  set_fact:
+    assert_that_service__exists_assertion:
+    assert_that_service__has_state_assertion:
+    assert_that_service__has_status_assertion:
+
+- name: "Assert that name variable is defined"
+  assert:
+    that: "name is defined"
+    fail_msg: 'The variable "name" must be defined.'
+
+- name: "Assert that {{ has_state }} is a supported state"
+  assert:
+    that: 'has_state in assert_that_service__supported_states'
+    fail_msg: 'Unsupported state {{ has_state }}. State must be in : {{ assert_that_service__supported_states | join(", ") }}.'
+  when: 'has_state is defined'
+
+- name: "Assert that {{ has_status }} is a supported status"
+  assert:
+    that: 'has_status in assert_that_service__supported_statuses'
+    fail_msg: 'Unsupported status {{ has_status }}. Status must be in : {{ assert_that_service__supported_statuses | join(", ") }}.'
+  when: 'has_status is defined'
+
+# Services information is accessible using the ansible_facts.services variables.
+# See https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_facts_module.html.
+- name: 'Get service facts'
+  service_facts:
+
+- name: "Assert that ansible_facts.services exists"
+  assert:
+    that: "ansible_facts is defined and ansible_facts.services is defined"
+    fail_msg: 'Services informations could not be collected by the service_facts module.'
+
+- name: "Assert that {{ name }} exists is {{ exists }}"
+  assert:
+    that: "(ansible_facts.services[name] is defined) == exists"
+    fail_msg: 'Expecting {{ name }} to{{ exists | ternary("", " not") }} exist, but was{{ (not exists) | ternary("", " not") }}.'
+  register: 'assert_that_service__exists_assertion'
+
+- name: "Assert that {{ name }} has state {{ has_state }}"
+  assert:
+    that: 'ansible_facts.services[name].state == has_state'
+    fail_msg: 'Expecting {{ name }} to have state {{ has_state }}, but state is {{ ansible_facts.services[name].state }}.'
+  when: 'exists and has_state is defined'
+  register: 'assert_that_service__has_state_assertion'
+
+- name: "Assert that ansible_facts.services provides status"
+  assert:
+    that: 'ansible_facts.services[name].status is defined'
+    fail_msg: 'Expecting {{ name }} to have status {{ has_status }}, but status is not provided by {{ ansible_facts.services[name].source }}.'
+  when: 'exists and has_status is defined'
+  register: 'assert_that_service__has_status_assertion'
+
+- name: "Assert that {{ name }} has status {{ has_status }}"
+  block:
+    - name: "Assert that ansible_facts.services provides status"
+      assert:
+        that: 'ansible_facts.services[name].status is defined'
+        fail_msg: 'Expecting {{ name }} to have status {{ has_status }}, but status is not provided by {{ ansible_facts.services[name].source }}.'
+      register: 'assert_that_service__has_status_assertion'
+
+    - name: "Assert that {{ name }} has status {{ has_status }}"
+      assert:
+        that: 'ansible_facts.services[name].status == has_status'
+        fail_msg: 'Expecting {{ name }} to have status {{ has_status }}, but status is {{ ansible_facts.services[name].status }}.'
+      register: 'assert_that_service__has_status_assertion'
+  when: 'exists and has_status is defined'

@@ -1,6 +1,6 @@
-# marcwrobel.assertions.assert_service
+# marcwrobel.assertions.assert_that_service
 
-Assertions on services.
+Assertions on services (`exists`, `has_state`, `has_status`).
 
 ## Role variables
 
@@ -15,7 +15,7 @@ This role is using the following variables:
 
     - name: 'Assert that firewalld.service exists, is running and is enabled'
       include_role:
-        name: 'assert_service'
+        name: 'assert_that_service'
       vars:
         name: 'firewalld.service'
         has_state: 'running'
@@ -23,7 +23,7 @@ This role is using the following variables:
 
     - name: 'Assert that firewalld.service does not exist'
       include_role:
-        name: 'assert_service'
+        name: 'assert_that_service'
       vars:
         name: 'firewalld.service'
         exists: false
