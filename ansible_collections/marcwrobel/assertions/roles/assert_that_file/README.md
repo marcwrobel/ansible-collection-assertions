@@ -17,14 +17,14 @@ This role is using the following variables:
 
     - name: 'Assert that /tmp/test is managed by Ansible'
       include_role:
-        name: 'assert_that_file'
+        name: 'marcwrobel.assertions.assert_that_file'
       vars:
         path: '/path/to/file'
         has_content_matching: '^# Ansible managed'
 
     - name: 'Assert that /tmp/toto match the given multiline string'
       include_role:
-        name: 'assert_that_file'
+        name: 'marcwrobel.assertions.assert_that_file'
       vars:
         path: '/path/to/file'
         has_content_matching: 'line1\n.+\nline3'
@@ -32,7 +32,7 @@ This role is using the following variables:
 
     - name: 'Assert that /tmp/toto match the given case-sensitive string'
       include_role:
-        name: 'assert_that_file'
+        name: 'marcwrobel.assertions.assert_that_file'
       vars:
         path: '/path/to/file'
         has_content_matching: 'Case-sensitive string.'
@@ -43,7 +43,7 @@ This role is using the following variables:
       vars:
         path: '/path/to/file'
       include_role:
-        name: 'assert_that_file'
+        name: 'marcwrobel.assertions.assert_that_file'
 
 ## Requirements
 
