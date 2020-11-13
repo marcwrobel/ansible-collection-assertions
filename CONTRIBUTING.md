@@ -75,3 +75,17 @@ request (targeting the `main` branch) and at least once a week on saturday morni
 
 - linting with YAMLlint and Ansible-lint,
 - integration tests on collections with Molecule.
+
+## Release
+
+In order to publish a new release on [Ansible Galaxy](http://galaxy.ansible.com/) follow this process:
+
+0. Run `source .environments/ansible/bin/activate` to switch to Ansible 2.10+ (the minimum required version).
+1. Update `galaxy.yml` manually, making sure the `version` key has the correct version.
+2. Push all changes, make sure tests are passing.
+3. Tag a new release (e.g. `x.y.z`), and push it to GitHub.
+4. Run `ansible-galaxy collection build` to build the release artifact (a `marcwrobel-assertions-x.y.z.tar.gz` file) from the collection directory.
+5. Make sure the file `~/.ansible/galaxy_token` has the correct Ansible Galaxy token (for authentication).
+6. Run `ansible-galaxy collection publish ./marcwrobel-assertions-x.y.z.tar.gz` from the collection directory.
+
+See also : https://www.jeffgeerling.com/blog/2020/automatically-building-and-publishing-ansible-galaxy-collections.
