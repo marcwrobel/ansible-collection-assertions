@@ -2,7 +2,7 @@ dependencies: [ ]
 
 galaxy_info:
   author: 'Marc Wrobel'
-  description: 'Assertions on the current Ansible version.'
+  description: 'Assertions on Ansible (has_min_version, has_max_version).'
   license: 'MIT'
   min_ansible_version: '2.8'
   # All platforms found at https://galaxy.ansible.com/api/v1/platforms/
