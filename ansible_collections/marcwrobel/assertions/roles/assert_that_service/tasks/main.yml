@@ -6,18 +6,18 @@
     assert_that_service__has_state_assertion:
     assert_that_service__has_status_assertion:
 
-- name: "Assert that name variable is defined"
+- name: "Check that name variable is defined"
   assert:
     that: "name is defined"
     fail_msg: 'The variable "name" must be defined.'
 
-- name: "Assert that {{ has_state }} is a supported state"
+- name: "Check that {{ has_state }} is a supported state"
   assert:
     that: 'has_state in assert_that_service__supported_states'
     fail_msg: 'Unsupported state {{ has_state }}. State must be in : {{ assert_that_service__supported_states | join(", ") }}.'
   when: 'has_state is defined'
 
-- name: "Assert that {{ has_status }} is a supported status"
+- name: "Check that {{ has_status }} is a supported status"
   assert:
     that: 'has_status in assert_that_service__supported_statuses'
     fail_msg: 'Unsupported status {{ has_status }}. Status must be in : {{ assert_that_service__supported_statuses | join(", ") }}.'
@@ -28,7 +28,7 @@
 - name: 'Get service facts'
   service_facts:
 
-- name: "Assert that ansible_facts.services exists"
+- name: "Check that ansible_facts.services exists"
   assert:
     that: "ansible_facts is defined and ansible_facts.services is defined"
     fail_msg: 'Services informations could not be collected by the service_facts module.'

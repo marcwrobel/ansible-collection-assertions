@@ -10,12 +10,12 @@
     assert_that_path__has_owner_assertion:
     assert_that_path__has_group_assertion:
 
-- name: "Assert that path variable is defined"
+- name: "Check that path variable is defined"
   assert:
     that: "path is defined"
     fail_msg: 'The variable "path" must be defined.'
 
-- name: "Assert that {{ type }} is supported"
+- name: "Check that {{ type }} is supported"
   assert:
     that: 'has_type in assert_that_path__supported_types'
     fail_msg: 'Unsupported type {{ has_type }}. Type must be in : {{ assert_that_path__supported_types | join(", ") }}.'

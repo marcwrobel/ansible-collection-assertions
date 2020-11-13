@@ -4,7 +4,7 @@
   set_fact:
     assert_that_file__has_content_matching_assertion:
 
-- name: "Assert that path variable is defined"
+- name: "Check that path variable is defined"
   assert:
     that: "path is defined"
     fail_msg: 'The variable "path" must be defined.'
