@@ -20,4 +20,4 @@ galaxy_info:
       versions: [ 'all' ]
     - name: 'Ubuntu'
       versions: [ 'all' ]
-  galaxy_tags: [ 'assertion', 'path' ]
+  galaxy_tags: [ 'development', 'testing', 'assertion', 'assertions', 'molecule', 'ci', 'path' ]

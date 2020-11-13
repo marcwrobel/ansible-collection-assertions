@@ -9,7 +9,7 @@ authors: [ 'Marc Wrobel (https://www.marcwrobel.fr/)' ]
 
 dependencies: { }
 
-tags: [ 'ansible', 'testing' ]
+tags: [ 'collection', 'development', 'testing', 'assertion', 'assertions', 'molecule', 'ci', 'ansible', 'distributions', 'files', 'paths', 'services' ]
 
 repository: https://github.com/marcwrobel/ansible-collection-assertions
 documentation: https://github.com/marcwrobel/ansible-collection-assertions

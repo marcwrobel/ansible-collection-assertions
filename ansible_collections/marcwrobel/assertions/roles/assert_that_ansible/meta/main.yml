@@ -87,4 +87,4 @@ galaxy_info:
       versions: [ 'all' ]
     - name: 'Windows'
       versions: [ 'all' ]
-  galaxy_tags: [ 'assertion', 'ansible' ]
+  galaxy_tags: [ 'development', 'testing', 'assertion', 'assertions', 'molecule', 'ci', 'ansible' ]
