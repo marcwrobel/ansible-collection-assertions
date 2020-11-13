@@ -37,7 +37,7 @@ None.
 
 ## Implementation notes
 
-This role does not implement the version check like `marcwrobel.assertions.assert_ansible` because :
+This role does not implement the version check like `marcwrobel.assertions.assert_that_ansible` because :
 - it was too complex to include `min` and `max` variables for multiple distributions,
 - point release are not frequent and point release number is rarely included in `ansible_distribution_version`, making it less relevant.
 

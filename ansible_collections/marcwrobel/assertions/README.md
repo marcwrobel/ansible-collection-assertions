@@ -4,18 +4,27 @@
 
 A reusable collection of assertions for Ansible.
 
-The main purpose of this library is reducing the boilerplate code and displaying meaningful messages when writing [Ansible Molecule tests](https://github.com/ansible-community/molecule) tests
-with the (default) Ansible test verifier.
-
-## Supported assertions
+The main purpose of this library is reducing the boilerplate code and displaying meaningful messages when writing [Ansible Molecule tests](https://github.com/ansible-community/molecule)
+with the (default) Ansible test verifier. It can also be used to ensure a playbook cannot be run if certain conditions are not met.
 
 This collection supports the following assertions :
 
-- [assert_ansible](/ansible_collections/marcwrobel/assertions/roles/assert_ansible/README.md): Assertions on the current Ansible version.
+- [`assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md): Assertions on Ansible (`has_min_version`,
+  `has_max_version`).
 - [assert_distribution](/ansible_collections/marcwrobel/assertions/roles/assert_distribution/README.md): Assertions on the current distribution version: name,
   version.
 - [assert_file_content](/ansible_collections/marcwrobel/assertions/roles/assert_file_content/README.md): Assertions on file content.
 - [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions on paths : existence, type, mode, owner, group.
 - [assert_service](/ansible_collections/marcwrobel/assertions/roles/assert_service/README.md): Assertions on services : existence, state, status.
 
-Take a look at each assertion README for a more comprehensible documentation with usages.
+## Examples
+### `assert_that_ansible`
+
+    - name: 'Assert that Ansible version is 2.8.x or 2.9.x'
+      include_role:
+        name: 'assert_that_ansible'
+      vars:
+        has_min_version: '2.8'
+        has_max_version: '2.10'
+
+The full `assert_that_ansible` documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md).
