@@ -21,7 +21,17 @@ https://github.com/marcwrobel/ansible-collection-assertions/blob/cleanup-and-doc
 - [`marcwrobel.assertions.assert_that_service`](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md) - assertions on services
   (`exists`, `has_state`, `has_status`).
 
-## Examples
+## Usage
+
+### Installing the collection
+
+Install this collection locally:
+
+```shell
+ansible-galaxy collection install marcwrobel.assertions -p ./collections
+```
+
+Then you can use the roles from the collection in your playbooks.
 
 ### [`marcwrobel.assertions.assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md)
 
