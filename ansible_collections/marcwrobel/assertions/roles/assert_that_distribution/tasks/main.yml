@@ -1,0 +1,27 @@
+---
+
+- name: 'Clear assertions result variables'
+  set_fact:
+    assert_that_distribution__is_in_assertion:
+
+- name: 'Compute distribution strings'
+  set_fact:
+    assert_that_distribution__name: '{{ ansible_distribution }}'
+    assert_that_distribution__name_and_major_version: '{{ ansible_distribution }} {{ ansible_distribution_major_version }}'
+    assert_that_distribution__name_and_full_version: '{{ ansible_distribution }} {{ ansible_distribution_version }}'
+
+- name: 'Assert that {{ assert_that_distribution__name_and_full_version }} is supported'
+  assert:
+    that: >
+      assert_that_distribution__name in is_in
+      or assert_that_distribution__name_and_major_version in is_in
+      or assert_that_distribution__name_and_full_version in is_in
+    msg: >-
+      Expecting one of
+      [{{ assert_that_distribution__name }},
+      {{ assert_that_distribution__name_and_major_version }}
+      {{ assert_that_distribution__name_and_full_version }}]
+      to be in [{{ is_in | join(", ") }}],
+      but none are.
+  register: 'assert_that_distribution__is_in_assertion'
+  when: 'is_in is defined and (is_in|length > 0)'

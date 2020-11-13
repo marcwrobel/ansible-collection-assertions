@@ -2,19 +2,19 @@
 
 - name: 'When distribution list is empty, then succeeds'
   include_role:
-    name: 'assert_distribution'
+    name: 'assert_that_distribution'
   vars:
     is_in: [ ]
 
 - name: 'When distribution is supported, then succeeds'
   include_role:
-    name: 'assert_distribution'
+    name: 'assert_that_distribution'
   vars:
     is_in: [ 'Debian', 'Ubuntu', 'CentOS', 'Fedora', 'Amazon' ]
 
 - name: 'When distribution version is supported, then succeeds'
   include_role:
-    name: 'assert_distribution'
+    name: 'assert_that_distribution'
   vars:
     is_in: [ 'Debian 10', 'Ubuntu 20.04', 'CentOS 8', 'Fedora 33', 'Amazon 2' ]
 
@@ -22,7 +22,7 @@
   block:
     - name: 'Assertion'
       include_role:
-        name: 'assert_distribution'
+        name: 'assert_that_distribution'
         apply:
           ignore_errors: true
       vars:
@@ -30,6 +30,6 @@
     - name: 'Verification'
       assert:
         that:
-          - 'assert_distribution__supported_assertion is failed'
-          - 'assert_distribution__supported_assertion.msg is regex("^Expecting one of \[.+\] to be in \[OS 1, OS 2, OS 3\], but none are.")'
-        fail_msg: 'assertion result : {{ assert_distribution__supported_assertion | to_json }}'
+          - 'assert_that_distribution__is_in_assertion is failed'
+          - 'assert_that_distribution__is_in_assertion.msg is regex("^Expecting one of \[.+\] to be in \[OS 1, OS 2, OS 3\], but none are.")'
+        fail_msg: 'assertion result : {{ assert_that_distribution__is_in_assertion | to_json }}'

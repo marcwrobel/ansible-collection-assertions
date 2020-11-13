@@ -2,19 +2,19 @@
 
 - name: 'Clear assertions result variables'
   set_fact:
-    has_min_version_assertion:
-    has_max_version_assertion:
+    assert_that_ansible__has_min_version_assertion:
+    assert_that_ansible__has_max_version_assertion:
 
 - name: "Assert that Ansible version is >= {{ has_min_version }}"
   assert:
     that: "ansible_version.full is version(has_min_version, '>=', strict_version_parsing)"
     fail_msg: 'Expecting Ansible version to be >= {{ has_min_version }}, but was {{ ansible_version.full }}'
-  register: 'has_min_version_assertion'
+  register: 'assert_that_ansible__has_min_version_assertion'
   when: 'has_min_version is defined'
 
 - name: "Assert Ansible version is < {{ has_max_version }}"
   assert:
     that: "ansible_version.full is version(has_max_version, '<', strict_version_parsing)"
     fail_msg: 'Expecting Ansible version to be < {{ has_max_version }}, but was {{ ansible_version.full }}'
-  register: 'has_max_version_assertion'
+  register: 'assert_that_ansible__has_max_version_assertion'
   when: 'has_max_version is defined'

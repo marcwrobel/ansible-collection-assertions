@@ -22,9 +22,9 @@
     - name: 'Verification'
       assert:
         that:
-          - 'has_min_version_assertion is failed'
-          - 'has_min_version_assertion.msg is regex("^Expecting Ansible version to be >= 99, but was")'
-        fail_msg: 'assertion result : {{ has_min_version_assertion | to_json }}'
+          - 'assert_that_ansible__has_min_version_assertion is failed'
+          - 'assert_that_ansible__has_min_version_assertion.msg is regex("^Expecting Ansible version to be >= 99, but was")'
+        fail_msg: 'assertion result : {{ assert_that_ansible__has_min_version_assertion | to_json }}'
 
 - name: 'When only has_min_version provided and version >= has_min_version but strict_version_parsing is true, then fails'
   block:
@@ -39,9 +39,9 @@
     - name: 'Verification'
       assert:
         that:
-          - 'has_min_version_assertion is failed'
-          - 'has_min_version_assertion.msg is regex("Version comparison: invalid version number")'
-        fail_msg: 'assertion result : {{ has_min_version_assertion | to_json }}'
+          - 'assert_that_ansible__has_min_version_assertion is failed'
+          - 'assert_that_ansible__has_min_version_assertion.msg is regex("Version comparison: invalid version number")'
+        fail_msg: 'assertion result : {{ assert_that_ansible__has_min_version_assertion | to_json }}'
 
 - name: 'When only has_max_version provided and version < has_max_version, then succeeds'
   include_role:
@@ -61,9 +61,9 @@
     - name: 'Verification'
       assert:
         that:
-          - 'has_max_version_assertion is failed'
-          - 'has_max_version_assertion.msg is regex("^Expecting Ansible version to be < 2.7, but was")'
-        fail_msg: 'assertion result : {{ has_max_version_assertion | to_json }}'
+          - 'assert_that_ansible__has_max_version_assertion is failed'
+          - 'assert_that_ansible__has_max_version_assertion.msg is regex("^Expecting Ansible version to be < 2.7, but was")'
+        fail_msg: 'assertion result : {{ assert_that_ansible__has_max_version_assertion | to_json }}'
 
 - name: 'When only has_max_version provided and version > has_max_version but strict_version_parsing is true, then fails'
   block:
@@ -78,9 +78,9 @@
     - name: 'Verification'
       assert:
         that:
-          - 'has_max_version_assertion is failed'
-          - 'has_max_version_assertion.msg is regex("Version comparison: invalid version number")'
-        fail_msg: 'assertion result : {{ has_max_version_assertion | to_json }}'
+          - 'assert_that_ansible__has_max_version_assertion is failed'
+          - 'assert_that_ansible__has_max_version_assertion.msg is regex("Version comparison: invalid version number")'
+        fail_msg: 'assertion result : {{ assert_that_ansible__has_max_version_assertion | to_json }}'
 
 - name: 'When has_min_version and has_max_version provided and version >= min and version < has_max_version, then succeeds'
   include_role:

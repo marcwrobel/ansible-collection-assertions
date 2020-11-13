@@ -11,13 +11,13 @@ This collection supports the following assertions :
 
 - [`assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md): Assertions on Ansible (`has_min_version`,
   `has_max_version`).
-- [assert_distribution](/ansible_collections/marcwrobel/assertions/roles/assert_distribution/README.md): Assertions on the current distribution version: name,
-  version.
+- [`assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md): Assertions on distributions (`is_in`).
 - [assert_file_content](/ansible_collections/marcwrobel/assertions/roles/assert_file_content/README.md): Assertions on file content.
 - [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions on paths : existence, type, mode, owner, group.
 - [assert_service](/ansible_collections/marcwrobel/assertions/roles/assert_service/README.md): Assertions on services : existence, state, status.
 
 ## Examples
+
 ### `assert_that_ansible`
 
     - name: 'Assert that Ansible version is 2.8.x or 2.9.x'
@@ -27,4 +27,14 @@ This collection supports the following assertions :
         has_min_version: '2.8'
         has_max_version: '2.10'
 
-The full `assert_that_ansible` documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md).
+The full `assert_that_ansible` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md).
+
+### `assert_that_distribution`
+
+    - name: 'Assert that the distribution is supported'
+      include_role:
+        name: 'assert_that_distribution'
+      vars:
+        is_in: [ 'Debian', 'RedHat 8', `Ubuntu 20.04` ]
+
+The full `assert_that_distribution` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md).

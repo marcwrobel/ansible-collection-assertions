@@ -1,18 +1,19 @@
-# marcwrobel.assertions.assert_distribution
+# marcwrobel.assertions.assert_that_distribution
 
-Assertions on the current distribution version: name, version.
+Assertions on distributions (`is_in`).
 
 ## Role variables
 
 This role is using the following variables:
 
-- `is_in` (`string[]`, optional) - the list of the allowed distributions. An item in the `is_in` can be:
-  - Only the distribution name if you want to match all distribution's versions : `Debian`, `CentOS`, `RedHat`, `Ubuntu`, `Fedora`, `Amazon`...
-  - The distribution name with its major version if you want to match all distribution's versions for this major version : `Debian 10`, `CentOS 8`...
-  - The distribution name with its full version if you want to match a specific distribution's versions : `Ubuntu 20.04`, `CentOS 8.2`...
+- `is_in` (`string[]`, optional) - the list of the allowed distributions. Items in this list can be:
+  - The distribution name only, if you want to match all distribution's versions (`Debian`, `CentOS`, `RedHat`, `Ubuntu`, `Fedora`, `Amazon`...),
+  - or the distribution name with its major version, if you want to match all distribution's versions for this major version (`Debian 10`, `CentOS 8`...),
+  - or the distribution name with its full version, if you want to match a specific distribution's versions (`Ubuntu 20.04`, `CentOS 8.2`...).
 
-Names and versions comes from the special Ansible variables `ansible_distribution`, `ansible_distribution_major_version` and `ansible_distribution_version`.
-Note that [point release number](https://wikipedia.org/wiki/Point_release) is rarely included in `ansible_distribution_version`. As of 2020-11-13:
+Names and versions come from the Ansible facts `ansible_distribution`, `ansible_distribution_major_version` and `ansible_distribution_version`. Note that [point
+release number](https://wikipedia.org/wiki/Point_release) is rarely included in `ansible_distribution_version`. As of 2020-11-13:
+
 - Ubuntu 20.04: `{ ansible_distribution: "Ubuntu", ansible_distribution_major_version: "20", ansible_distribution_version: "20.04" }`
 - Debian 10: `{ ansible_distribution: "Debian", ansible_distribution_major_version: "10", ansible_distribution_version: "10" }`
 - Amazon Linux 2: `{ ansible_distribution: "Amazon", ansible_distribution_major_version: "2", ansible_distribution_version: "2" }`
@@ -23,9 +24,9 @@ Note that [point release number](https://wikipedia.org/wiki/Point_release) is ra
 
     - name: 'Assert that the distribution is supported'
       include_role:
-        name: 'assert_distribution'
+        name: 'assert_that_distribution'
       vars:
-        is_in: [ 'Debian 10', 'CentOS 8' ]
+        is_in: [ 'Debian', 'RedHat 8', `Ubuntu 20.04` ]
 
 ## Requirements
 
