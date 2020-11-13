@@ -1,7 +1,0 @@
----
-
-# Whether the ignore-case mode is enabled
-ignorecase: true
-
-# Whether the multi-line mode is enabled
-multiline: true

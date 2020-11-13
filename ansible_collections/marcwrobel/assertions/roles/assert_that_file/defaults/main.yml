@@ -1,0 +1,7 @@
+---
+
+# Whether the ignore-case mode is enabled during content matching
+ignorecase_for_content_matching: true
+
+# Whether the multi-line mode is enabled during content matching
+multiline_for_content_matching: true

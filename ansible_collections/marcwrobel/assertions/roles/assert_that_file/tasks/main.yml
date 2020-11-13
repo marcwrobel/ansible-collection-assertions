@@ -1,0 +1,26 @@
+---
+
+- name: 'Clear assertions result variables'
+  set_fact:
+    assert_that_file__has_content_matching_assertion:
+
+- name: "Assert that path variable is defined"
+  assert:
+    that: "path is defined"
+    fail_msg: 'The variable "path" must be defined.'
+
+- name: 'Get {{ path }} content'
+  slurp:
+    path: '{{ path }}'
+  when: 'has_content_matching is defined'
+  register: 'assert_that_file__file_content'
+
+- name: 'Assert that {{ path }} content is matching {{ has_content_matching }}'
+  assert:
+    that: '(assert_that_file__file_content.content | b64decode) is regex(has_content_matching, multiline=multiline_for_content_matching, ignorecase=ignorecase_for_content_matching)' # noqa 204
+    fail_msg: >-
+      {{ path }} content does not match "{{ has_content_matching }}"
+      (multi-line={{ multiline_for_content_matching }},
+      ignore-case={{ ignorecase_for_content_matching }}).
+  when: 'has_content_matching is defined'
+  register: 'assert_that_file__has_content_matching_assertion'

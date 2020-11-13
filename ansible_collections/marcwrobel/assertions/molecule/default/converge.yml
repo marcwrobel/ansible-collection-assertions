@@ -4,11 +4,12 @@
   collections:
     - 'marcwrobel.assertions'
   tasks:
-    - name: 'Create test file for assert_file_content'
+    - name: 'Create test file for assert_that_file'
       copy:
         dest: '/tmp/test'
         mode: '0644'
         content: |
+          # Ansible managed - manual changes may be lost !
           line1
           line2
           line3

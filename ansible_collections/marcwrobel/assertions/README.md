@@ -12,7 +12,7 @@ This collection supports the following assertions :
 - [`assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md): Assertions on Ansible (`has_min_version`,
   `has_max_version`).
 - [`assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md): Assertions on distributions (`is_in`).
-- [assert_file_content](/ansible_collections/marcwrobel/assertions/roles/assert_file_content/README.md): Assertions on file content.
+- [`assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md): Assertions on files (`has_content_matching`).
 - [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions on paths : existence, type, mode, owner, group.
 - [assert_service](/ansible_collections/marcwrobel/assertions/roles/assert_service/README.md): Assertions on services : existence, state, status.
 
@@ -38,3 +38,14 @@ The full `assert_that_ansible` role documentation is available in its own [READM
         is_in: [ 'Debian', 'RedHat 8', `Ubuntu 20.04` ]
 
 The full `assert_that_distribution` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md).
+
+### `assert_that_file`
+
+    - name: 'Assert that /tmp/test is managed by Ansible'
+      include_role:
+        name: 'assert_that_file'
+      vars:
+        path: '/path/to/file'
+        has_content_matching: '^# Ansible managed'
+
+The full `assert_that_file` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md).

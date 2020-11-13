@@ -2,7 +2,7 @@ dependencies: [ ]
 
 galaxy_info:
   author: 'Marc Wrobel'
-  description: 'Assertions on file content.'
+  description: 'Assertions on files (has_content_matching).'
   license: 'MIT'
   min_ansible_version: '2.8'
   platforms:
@@ -20,4 +20,4 @@ galaxy_info:
       versions: [ 'all' ]
     - name: 'Ubuntu'
       versions: [ 'all' ]
-  galaxy_tags: [ 'assertion', 'file', 'content' ]
+  galaxy_tags: [ 'assertion', 'file', 'regex' ]

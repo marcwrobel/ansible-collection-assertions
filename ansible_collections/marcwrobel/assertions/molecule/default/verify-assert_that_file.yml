@@ -1,0 +1,42 @@
+---
+
+- name: 'When file content match the given case-sensitive regex, then succeeds'
+  include_role:
+    name: 'assert_that_file'
+  vars:
+    path: '/tmp/test'
+    has_content_matching: '^# Ansible managed'
+    ignorecase_for_content_matching: false
+
+- name: 'When file content match the given case-insensitive regex, then succeeds'
+  include_role:
+    name: 'assert_that_file'
+  vars:
+    path: '/tmp/test'
+    has_content_matching: '^LINE3$'
+
+- name: 'When file content match the given global regex, then succeeds'
+  include_role:
+    name: 'assert_that_file'
+  vars:
+    path: '/tmp/test'
+    has_content_matching: 'line1\n.+\nline3'
+    multiline_for_content_matching: false
+
+- name: 'When file content does not match the given regex, then fails'
+  block:
+    - name: 'Assertion'
+      include_role:
+        name: 'assert_that_file'
+        apply:
+          ignore_errors: true
+      vars:
+        path: '/tmp/test'
+        has_content_matching: '^LINE3$'
+        ignorecase_for_content_matching: false
+    - name: 'Verification'
+      assert:
+        that:
+          - 'assert_that_file__has_content_matching_assertion is failed'
+          - 'assert_that_file__has_content_matching_assertion.msg == "/tmp/test content does not match \"^LINE3$\" (multi-line=True, ignore-case=False)."'
+        fail_msg: 'assertion result : {{ assert_that_file__has_content_matching_assertion | to_json }}'
