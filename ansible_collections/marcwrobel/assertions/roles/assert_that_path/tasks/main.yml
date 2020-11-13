@@ -1,0 +1,75 @@
+---
+
+- name: 'Clear assert_* variables'
+  set_fact:
+    assert_that_path__exists_assertion:
+    assert_that_path__has_type_file_assertion:
+    assert_that_path__has_type_directory_assertion:
+    assert_that_path__has_type_link_assertion:
+    assert_that_path__has_mode_assertion:
+    assert_that_path__has_owner_assertion:
+    assert_that_path__has_group_assertion:
+
+- name: "Assert that path variable is defined"
+  assert:
+    that: "path is defined"
+    fail_msg: 'The variable "path" must be defined.'
+
+- name: "Assert that {{ type }} is supported"
+  assert:
+    that: 'has_type in assert_that_path__supported_types'
+    fail_msg: 'Unsupported type {{ has_type }}. Type must be in : {{ assert_that_path__supported_types | join(", ") }}.'
+  when: 'has_type is defined'
+
+- name: 'Get {{ path }} status'
+  stat:
+    path: '{{ path }}'
+  register: 'assert_that_path__path'
+
+- name: "Assert that {{ path }} exists is {{ exists }}"
+  assert:
+    that: "assert_that_path__path.stat.exists == exists"
+    fail_msg: 'Expecting {{ path }} to{{ exists | ternary("", " not") }} exist, but was{{ (not exists) | ternary("", " not") }}.'
+  register: 'assert_that_path__exists_assertion'
+
+- name: "Assert that {{ path }} is a file"
+  assert:
+    that: 'assert_that_path__path.stat.isreg'
+    fail_msg: 'Expecting {{ path }} to be a regular file, but was not.'
+  when: 'exists and has_type is defined and has_type == "file"'
+  register: 'assert_that_path__has_type_file_assertion'
+
+- name: "Assert that {{ path }} type is directory"
+  assert:
+    that: 'assert_that_path__path.stat.isdir'
+    fail_msg: 'Expecting {{ path }} to be a directory, but was not.'
+  when: 'exists and has_type is defined and has_type == "directory"'
+  register: 'assert_that_path__has_type_directory_assertion'
+
+- name: "Assert that {{ path }} type is link"
+  assert:
+    that: 'assert_that_path__path.stat.islnk'
+    fail_msg: 'Expecting {{ path }} to be a link, but was not.'
+  when: 'exists and has_type is defined and has_type == "link"'
+  register: 'assert_that_path__has_type_link_assertion'
+
+- name: "Assert that {{ path }} mode is {{ has_mode }}"
+  assert:
+    that: 'assert_that_path__path.stat.mode == has_mode'
+    fail_msg: 'Expecting {{ path }} to have a mode equals to {{ has_mode }}, but was {{ assert_that_path__path.stat.mode }}.'
+  when: 'exists and has_mode is defined'
+  register: 'assert_that_path__has_mode_assertion'
+
+- name: "Assert that {{ path }} owner is {{ has_owner }}"
+  assert:
+    that: 'assert_that_path__path.stat.pw_name == has_owner'
+    fail_msg: 'Expecting {{ path }} owner to be {{ has_owner }}, but was {{ assert_that_path__path.stat.pw_name }}.'
+  when: 'exists and has_owner is defined'
+  register: 'assert_that_path__has_owner_assertion'
+
+- name: "Assert that {{ path }} group is {{ has_group }}"
+  assert:
+    that: 'assert_that_path__path.stat.gr_name == has_group'
+    fail_msg: 'Expecting {{ path }} group to be {{ has_group }}, but was {{ assert_that_path__path.stat.gr_name }}.'
+  when: 'exists and has_group is defined'
+  register: 'assert_that_path__has_group_assertion'

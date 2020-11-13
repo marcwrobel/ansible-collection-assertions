@@ -13,7 +13,8 @@ This collection supports the following assertions :
   `has_max_version`).
 - [`assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md): Assertions on distributions (`is_in`).
 - [`assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md): Assertions on files (`has_content_matching`).
-- [assert_path](/ansible_collections/marcwrobel/assertions/roles/assert_path/README.md): Assertions on paths : existence, type, mode, owner, group.
+- [`assert_that_path`](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md): Assertions for paths (`exists`, `has_type`, `has_mode`,
+  `has_owner`, `has_group`).
 - [assert_service](/ansible_collections/marcwrobel/assertions/roles/assert_service/README.md): Assertions on services : existence, state, status.
 
 ## Examples
@@ -49,3 +50,17 @@ The full `assert_that_distribution` role documentation is available in its own [
         has_content_matching: '^# Ansible managed'
 
 The full `assert_that_file` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md).
+
+### `assert_that_path`
+
+    - name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
+      include_role:
+        name: 'assert_that_path'
+      vars:
+        path: '/path/to/file'
+        has_type: 'file'
+        has_mode: '0640'
+        has_owner: 'root'
+        has_group: 'root'
+
+The full `assert_that_path` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md).

@@ -1,0 +1,4 @@
+---
+
+# Supported values for has_type assertion
+assert_that_path__supported_types: [ 'file', 'directory', 'link' ]

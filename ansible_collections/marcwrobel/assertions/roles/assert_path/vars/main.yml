@@ -1,3 +1,0 @@
----
-
-assert_path__supported_types: [ 'file', 'directory', 'link' ]

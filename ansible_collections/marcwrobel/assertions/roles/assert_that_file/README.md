@@ -2,7 +2,7 @@
 
 Assertions on file content (`has_content_matching`).
 
-If you are looking for mode, owner or group assertions, take a look at `marcwrobel.assertions.assert_path`.
+If you are looking for mode, owner or group assertions, take a look at `marcwrobel.assertions.assert_that_path`.
 
 ## Role variables
 
