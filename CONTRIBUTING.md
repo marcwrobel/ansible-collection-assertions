@@ -1,26 +1,18 @@
 ## Requirements
 
-The following instructions assume you have Python 3 installed along with [`python-pip`](https://pip.pypa.io/en/stable/), [`python-venv`](https://docs.python.org/3/library/venv.html)
-[`python-wheel`](https://pythonwheels.com/) and `libssl-dev` (for Molecule).
+The following instructions assume you have Python 3 and [Docker](https://www.docker.com/) installed. On Debian 10 run :
 
-For instance on Debian 10 :
-
-    sudo apt install python3-pip python3-venv python3-wheel libssl-dev
-
-[Docker](https://www.docker.com/) must also be installed to run the tests. Have a look at the [official documentation](https://docs.docker.com/engine/install/debian/)
-for installation instructions.
+    sudo apt install pipenv
 
 ## Prepare development environment
 
 This project needs [Ansible](https://www.ansible.com/), [YAMLlint](https://yamllint.readthedocs.io/en/stable/), [Ansible-lint](https://github.com/ansible/ansible-lint)
 and [Molecule](https://molecule.readthedocs.io/en/stable/).
 
-The best and easiest way to install those dependencies is to use the `requirements.txt` in a Python [virtual environment](https://docs.python.org/3/library/venv.html).
+The best and easiest way to install those dependencies is to use [`pipenv`](https://pipenv.pypa.io).
 
-    python3 -m venv .environments/ansible
-    source .environments/ansible/bin/activate
-    pip install -r requirements.txt
-
+    pipenv install
+    pipenv shell
     ansible --version
     yamllint --version
     ansible-lint --version
@@ -35,7 +27,7 @@ Linting is performed using YAMLlint and Ansible-lint :
 
 ## Run integration tests
 
-### Run integration tests on a single distribution
+### Run integration tests
 
 Integration tests are executed by Molecule using [Jeff Geerling's](https://www.jeffgeerling.com/) Docker images. Any `docker-xxx-ansible` images listed on his
 profile on [Docker Hub](https://hub.docker.com/u/geerlingguy/) can be used with the `xxx` identifier passed as the `MOLECULE_DISTRO` environment variable. For
@@ -45,8 +37,6 @@ instance, to run the integration tests on CentOS 8:
     MOLECULE_DISTRO=centos8 molecule test
 
 The default distribution is `debian10`.
-
-### Run integration tests on multiple distributions
 
 If you want to launch integration tests on multiple distributions :
 
@@ -80,7 +70,7 @@ request (targeting the `main` branch) and at least once a week on saturday morni
 
 In order to publish a new release on [Ansible Galaxy](http://galaxy.ansible.com/) follow this process:
 
-0. Run `source .environments/ansible/bin/activate` to switch to Ansible 2.10+ (the minimum required version).
+0. Run `pipenv shell` to switch to Ansible 2.10+ (the minimum required version).
 1. Update `galaxy.yml` manually, making sure the `version` key has the correct version.
 2. Push all changes, make sure tests are passing.
 3. Tag a new release (e.g. `x.y.z`), and push it to GitHub.
