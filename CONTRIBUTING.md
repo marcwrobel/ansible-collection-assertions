@@ -27,8 +27,6 @@ Linting is performed using YAMLlint and Ansible-lint :
 
 ## Run integration tests
 
-### Run integration tests
-
 Integration tests are executed by Molecule using [Jeff Geerling's](https://www.jeffgeerling.com/) Docker images. Any `docker-xxx-ansible` images listed on his
 profile on [Docker Hub](https://hub.docker.com/u/geerlingguy/) can be used with the `xxx` identifier passed as the `MOLECULE_DISTRO` environment variable. For
 instance, to run the integration tests on CentOS 8:
@@ -45,7 +43,7 @@ If you want to launch integration tests on multiple distributions :
         MOLECULE_DISTRO=$distro molecule test
     done
 
-### Run integration tests during the development lifecycle
+## Run integration tests during the development lifecycle
 
 During the development lifecycle you may prefer to keep the docker containers running and run `molecule` commands individually:
 
