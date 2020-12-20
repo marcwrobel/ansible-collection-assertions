@@ -1,4 +1,4 @@
 ---
 
 # Whether strict version parsing should be used.
-strict_version_parsing: false
+using_strict_version_parsing: false

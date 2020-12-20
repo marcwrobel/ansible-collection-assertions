@@ -4,24 +4,24 @@
   include_role:
     name: 'assert_that_file'
   vars:
-    path: '/tmp/test'
+    with_path: '/tmp/test'
     has_content_matching: '^# Ansible managed'
-    ignorecase_for_content_matching: false
+    using_ignorecase_for_content_matching: false
 
 - name: 'When file content match the given case-insensitive regex, then succeeds'
   include_role:
     name: 'assert_that_file'
   vars:
-    path: '/tmp/test'
+    with_path: '/tmp/test'
     has_content_matching: '^LINE3$'
 
 - name: 'When file content match the given global regex, then succeeds'
   include_role:
     name: 'assert_that_file'
   vars:
-    path: '/tmp/test'
+    with_path: '/tmp/test'
     has_content_matching: 'line1\n.+\nline3'
-    multiline_for_content_matching: false
+    using_multiline_for_content_matching: false
 
 - name: 'When file content does not match the given regex, then fails'
   block:
@@ -31,9 +31,9 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/tmp/test'
+        with_path: '/tmp/test'
         has_content_matching: '^LINE3$'
-        ignorecase_for_content_matching: false
+        using_ignorecase_for_content_matching: false
     - name: 'Verification'
       assert:
         that:

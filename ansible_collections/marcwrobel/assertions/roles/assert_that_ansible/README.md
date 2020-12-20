@@ -8,7 +8,7 @@ This role is using the following variables:
 
 - `has_min_version` (`string`, optional) - the minimum required Ansible version, included (`has_min_version >= ansible_version.full`).
 - `has_max_version` (`string`, optional) - the maximum required Ansible version, excluded (`ansible_version.full < has_max_version`).
-- `strict_version_parsing` (`boolean`, required, default=`false`) - whether [strict version parsing](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions))
+- `using_strict_version_parsing` (`boolean`, required, default=`false`) - whether [strict version parsing](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions))
   must be used.
 
 ## Usage
@@ -39,7 +39,7 @@ This role is using the following variables:
   vars:
     has_min_version: '2.8'
     has_max_version: '2.10'
-    strict_version_parsing: true
+    using_strict_version_parsing: true
 
 # This is allowed, but do nothing
 - name: 'Assert nothing'

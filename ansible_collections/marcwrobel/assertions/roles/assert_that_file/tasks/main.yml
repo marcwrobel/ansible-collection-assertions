@@ -4,23 +4,23 @@
   set_fact:
     assert_that_file__has_content_matching_assertion:
 
-- name: "Check that path variable is defined"
+- name: "Check that with_path variable is defined"
   assert:
-    that: "path is defined"
-    fail_msg: 'The variable "path" must be defined.'
+    that: "with_path is defined"
+    fail_msg: 'The variable "with_path" must be defined.'
 
-- name: 'Get {{ path }} content'
+- name: 'Get {{ with_path }} content'
   slurp:
-    path: '{{ path }}'
+    path: '{{ with_path }}'
   when: 'has_content_matching is defined'
   register: 'assert_that_file__file_content'
 
-- name: 'Assert that {{ path }} content is matching {{ has_content_matching }}'
+- name: 'Assert that {{ with_path }} content is matching {{ has_content_matching }}'
   assert:
-    that: '(assert_that_file__file_content.content | b64decode) is regex(has_content_matching, multiline=multiline_for_content_matching, ignorecase=ignorecase_for_content_matching)' # noqa 204
+    that: '(assert_that_file__file_content.content | b64decode) is regex(has_content_matching, multiline=using_multiline_for_content_matching, ignorecase=using_ignorecase_for_content_matching)' # noqa 204
     fail_msg: >-
-      {{ path }} content does not match "{{ has_content_matching }}"
-      (multi-line={{ multiline_for_content_matching }},
-      ignore-case={{ ignorecase_for_content_matching }}).
+      {{ with_path }} content does not match "{{ has_content_matching }}"
+      (multi-line={{ using_multiline_for_content_matching }},
+      ignore-case={{ using_ignorecase_for_content_matching }}).
   when: 'has_content_matching is defined'
   register: 'assert_that_file__has_content_matching_assertion'

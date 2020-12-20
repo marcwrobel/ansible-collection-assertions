@@ -4,7 +4,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/'
+    with_path: '/'
     exists: true
 
 - name: 'When path exists, then assert non-existence fails'
@@ -15,7 +15,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/'
+        with_path: '/'
         exists: false
     - name: 'Verify'
       assert:
@@ -28,7 +28,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/does/not/exist'
+    with_path: '/does/not/exist'
     exists: false
 
 - name: 'When path does not exists, then assert existence fails'
@@ -39,7 +39,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/does/not/exist'
+        with_path: '/does/not/exist'
         exists: true
     - name: 'Verify'
       assert:
@@ -52,7 +52,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/etc/passwd'
+    with_path: '/etc/passwd'
     has_type: 'file'
 
 - name: 'When path is file, then assert directory type fails'
@@ -63,7 +63,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/etc/passwd'
+        with_path: '/etc/passwd'
         has_type: 'directory'
     - name: 'Verify'
       assert:
@@ -76,7 +76,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/'
+    with_path: '/'
     has_type: 'directory'
 
 - name: 'When path is directory, then assert file type fails'
@@ -87,7 +87,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/'
+        with_path: '/'
         has_type: 'file'
     - name: 'Verify'
       assert:
@@ -100,7 +100,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/'
+    with_path: '/'
     has_mode: '0755'
 
 - name: 'When mode is incorrect, then fails'
@@ -111,7 +111,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/'
+        with_path: '/'
         has_mode: '0777'
     - name: 'Verify'
       assert:
@@ -124,7 +124,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/'
+    with_path: '/'
     has_owner: 'root'
 
 - name: 'When owner is incorrect, then fails'
@@ -135,7 +135,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/'
+        with_path: '/'
         has_owner: 'me'
     - name: 'Verify'
       assert:
@@ -148,7 +148,7 @@
   include_role:
     name: 'assert_that_path'
   vars:
-    path: '/'
+    with_path: '/'
     has_group: 'root'
 
 - name: 'When group is incorrect, then fails'
@@ -159,7 +159,7 @@
         apply:
           ignore_errors: true
       vars:
-        path: '/'
+        with_path: '/'
         has_group: 'me'
     - name: 'Verify'
       assert:

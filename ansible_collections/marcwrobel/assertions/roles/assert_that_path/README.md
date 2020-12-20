@@ -6,7 +6,7 @@ Assertions for paths (`exists`, `has_type`, `has_mode`, `has_owner`, `has_group`
 
 This role is using the following variables:
 
-- `path` (`path`, required) - the path to test.
+- `with_path` (`path`, required) - the path to test.
 - `exists` (`boolean`, required, default=`true`) - whether the path exists.
 - `has_type` (`file | directory | link`, optional) - expected type of the path, if it exists. Supported types are :
 - `has_mode` (`string`, optional) - expected mode in octal representation (e.g. `0644`) of the path, if it exists. Mode must be .
@@ -20,7 +20,7 @@ This role is using the following variables:
   include_role:
     name: 'marcwrobel.assertions.assert_that_path'
   vars:
-    path: '/path/to/file'
+    with_path: '/path/to/file'
     has_type: 'file'
     has_mode: '0640'
     has_owner: 'root'
@@ -30,13 +30,13 @@ This role is using the following variables:
   include_role:
     name: 'marcwrobel.assertions.assert_that_path'
   vars:
-    path: '/path/to/file'
+    with_path: '/path/to/file'
 
 - name: 'Assert that /path/to/file does not exist'
   include_role:
     name: 'marcwrobel.assertions.assert_that_path'
   vars:
-    path: '/path/to/file'
+    with_path: '/path/to/file'
     exists: false
 ```
 
