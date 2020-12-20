@@ -19,7 +19,7 @@
     msg: >-
       Expecting one of
       [ {{ assert_that_distribution__name }},
-      {{ assert_that_distribution__name_and_major_version }}
+      {{ assert_that_distribution__name_and_major_version }},
       {{ assert_that_distribution__name_and_full_version }} ]
       to be in [ {{ is_in | join(", ") }} ],
       but none are.
