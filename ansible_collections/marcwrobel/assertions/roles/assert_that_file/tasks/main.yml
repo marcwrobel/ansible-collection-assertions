@@ -4,10 +4,12 @@
   set_fact:
     assert_that_file__has_content_matching_assertion:
 
-- name: "Check that with_path variable is defined"
-  assert:
-    that: "with_path is defined"
-    fail_msg: 'The variable "with_path" must be defined.'
+- name: 'Run path assertions on {{ with_path }}'
+  include_role:
+    name: 'marcwrobel.assertions.assert_that_path'
+  vars:
+    has_type: 'file'
+    # Other variables share same names and does not have to be redefined
 
 - name: 'Get {{ with_path }} content'
   slurp:

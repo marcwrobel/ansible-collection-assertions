@@ -7,7 +7,7 @@
   tasks:
     - include_tasks: 'verify-assert_that_ansible.yml'
     - include_tasks: 'verify-assert_that_distribution.yml'
-    - include_tasks: 'verify-assert_that_file.yml'
     - include_tasks: 'verify-assert_that_path.yml'
+    - include_tasks: 'verify-assert_that_file.yml'
     - include_tasks: 'verify-assert_that_service.yml'
       when: 'ansible_distribution == "Debian"' # See verify-assert_that_service.yml

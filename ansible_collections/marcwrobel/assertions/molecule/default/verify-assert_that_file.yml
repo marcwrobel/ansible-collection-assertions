@@ -1,5 +1,22 @@
 ---
 
+- name: 'Path assertion are properly re-routed to assert_that_path (1)'
+  include_role:
+    name: 'assert_that_file'
+  vars:
+    with_path: '/etc/passwd'
+    exists: true
+    has_mode: '0644'
+    has_owner: 'root'
+    has_group: 'root'
+
+- name: 'Path assertion are properly re-routed to assert_that_path (2)'
+  include_role:
+    name: 'assert_that_file'
+  vars:
+    with_path: '/does/not/exists'
+    exists: false
+
 - name: 'When file content match the given case-sensitive regex, then succeeds'
   include_role:
     name: 'assert_that_file'
