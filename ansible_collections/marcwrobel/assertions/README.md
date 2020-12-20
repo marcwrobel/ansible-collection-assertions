@@ -9,20 +9,25 @@ with the (default) Ansible test verifier. It can also be used to ensure a playbo
 
 This collection provides the following assertions :
 
-- [`marcwrobel.assertions.assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md) - assertions on Ansible
+- [`marcwrobel.assertions.assert_that_ansible`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md) - assertions on Ansible
   (`has_min_version`, `has_max_version`).
-- [`marcwrobel.assertions.assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md) - assertions on
+- [`marcwrobel.assertions.assert_that_distribution`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md) - assertions on
   distributions (`is_in`).
-- [`marcwrobel.assertions.assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md) - assertions on files
+- [`marcwrobel.assertions.assert_that_file`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md) - assertions on files
   (`has_content_matching`).
-- [`marcwrobel.assertions.assert_that_path`](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md) - assertions for paths (`exists`,
+- [`marcwrobel.assertions.assert_that_path`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md) - assertions for paths (`exists`,
   `has_type`, `has_mode`, `has_owner`, `has_group`).
-- [`marcwrobel.assertions.assert_that_service`](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md) - assertions on services
+- [`marcwrobel.assertions.assert_that_service`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md) - assertions on services
   (`exists`, `has_state`, `has_status`).
 
-## Usage
+## Requirements
 
-### Installing the collection
+In order to use this collection you need at least Ansible 2.9.
+
+Roles are tested on Debian 10, Ubuntu 20.04, Centos 8, Fedora 33 and Amazon Linux 2. But they make use of basic Ansible modules (`assert`, `file`, `service`...)
+so they should work on most of linux-based distributions, regardless of their version.
+
+## Installing the collection
 
 Install this collection locally:
 
@@ -32,20 +37,20 @@ ansible-galaxy collection install marcwrobel.assertions -p ./collections
 
 Then you can use the roles from the collection in your playbooks.
 
-### [`marcwrobel.assertions.assert_that_ansible`](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md)
+## Using [`marcwrobel.assertions.assert_that_ansible`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md)
 
 ```yaml
-- name: 'Assert that Ansible version is 2.8.x or 2.9.x'
+- name: 'Assert that Ansible version is 2.9.x'
   include_role:
     name: 'marcwrobel.assertions.assert_that_ansible'
   vars:
-    has_min_version: '2.8'
+    has_min_version: '2.9'
     has_max_version: '2.10'
 ```
 
-The full `marcwrobel.assertions.assert_that_ansible` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md).
+The full `marcwrobel.assertions.assert_that_ansible` role documentation is available in its own [README](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_ansible/README.md).
 
-### [`marcwrobel.assertions.assert_that_distribution`](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md)
+## Using [`marcwrobel.assertions.assert_that_distribution`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md)
 
 ```yaml
 - name: 'Assert that the distribution is supported'
@@ -55,9 +60,9 @@ The full `marcwrobel.assertions.assert_that_ansible` role documentation is avail
     is_in: [ 'Debian', 'RedHat 8', 'Ubuntu 20.04' ]
 ```
 
-The full `marcwrobel.assertions.assert_that_distribution` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md).
+The full `marcwrobel.assertions.assert_that_distribution` role documentation is available in its own [README](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_distribution/README.md).
 
-### [`marcwrobel.assertions.assert_that_file`](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md)
+## Using [`marcwrobel.assertions.assert_that_file`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md)
 
 ```yaml
 - name: 'Assert that /tmp/test is managed by Ansible'
@@ -68,9 +73,9 @@ The full `marcwrobel.assertions.assert_that_distribution` role documentation is 
     has_content_matching: '^# Ansible managed'
 ```
 
-The full `marcwrobel.assertions.assert_that_file` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md).
+The full `marcwrobel.assertions.assert_that_file` role documentation is available in its own [README](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_file/README.md).
 
-### [`marcwrobel.assertions.assert_that_path`](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md)
+## Using [`marcwrobel.assertions.assert_that_path`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md)
 
 ```yaml
 - name: 'Assert that /path/to/file exists, is a file, have mode 0640 and belongs to root:root'
@@ -84,9 +89,9 @@ The full `marcwrobel.assertions.assert_that_file` role documentation is availabl
     has_group: 'root'
 ```
 
-The full `marcwrobel.assertions.assert_that_path` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md).
+The full `marcwrobel.assertions.assert_that_path` role documentation is available in its own [README](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_path/README.md).
 
-### [`marcwrobel.assertions.assert_that_service`](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md)
+## Using [`marcwrobel.assertions.assert_that_service`](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md)
 
 ```yaml
 - name: 'Assert that firewalld.service exists, is running and is enabled'
@@ -98,4 +103,8 @@ The full `marcwrobel.assertions.assert_that_path` role documentation is availabl
     has_status: 'enabled'
 ```
 
-The full `marcwrobel.assertions.assert_that_service` role documentation is available in its own [README](/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md).
+The full `marcwrobel.assertions.assert_that_service` role documentation is available in its own [README](https://github.com/marcwrobel/ansible_collections/marcwrobel/assertions/roles/assert_that_service/README.md).
+
+## Contributing
+
+Check out the [contributing guide](https://github.com/marcwrobel/ansible-collection-assertions/blob/main/CONTRIBUTING.md) for more information.
